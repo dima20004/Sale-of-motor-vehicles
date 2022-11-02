@@ -11,10 +11,11 @@ using System.Windows.Forms;
 
 namespace Sale_of_motor_vehicles
 {
-    public partial class Регистрация : Form
-    {
-        public Регистрация()
-        {
+    public partial class Регистрация : Form {
+		private Context context;
+        public Регистрация(Context context) {
+			this.context = context;
+
             InitializeComponent();
             passField.UseSystemPasswordChar = true;
             userNameField.Text = "Введите имя";
@@ -40,11 +41,6 @@ namespace Sale_of_motor_vehicles
         private void label1_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -143,39 +139,25 @@ namespace Sale_of_motor_vehicles
                 return;
             }
 
-            if (userNameField.Text == "Введите имя")
+            if (passField.Text == "Введите пароль")
             {
-                MessageBox.Show("Введите имя");
+                MessageBox.Show("Введите пароль");
                 return;
             }
 
+			var result = context.messaging.attempt((it) => it.register(
+				new ClientMessaging.AccountData{ 
+					login = loginField.Text, pass = passField.Text 
+				},
+				userNameField.Text,
+				userSurnameField.Text
+			));
 
-
-            if (isUserExists()) return;
-
-            DB db=new DB();
-            MySqlCommand command = new MySqlCommand("INSERT INTO `users` (`id`, `login`, `pass`, `name`, `surname`) VALUES (NULL, @login, @pass, @name, @surname)", db.GetConnection());
-            command.Parameters.Add("@login", MySqlDbType.VarChar).Value =loginField.Text;
-            command.Parameters.Add("@pass", MySqlDbType.VarChar).Value = passField.Text;
-            command.Parameters.Add("@name", MySqlDbType.VarChar).Value = userNameField.Text;
-            command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = userSurnameField.Text;
-
-            db.openConnection();
-
-            if (command.ExecuteNonQuery() == 1)
-                MessageBox.Show("Аккаунт был создан");
-            else
-                MessageBox.Show("Аккаунт не был создан");
-
-
-
-
-            db.closeConnection();
-
-            
+            if (result && result.s) MessageBox.Show("Аккаунт был создан");
+            else MessageBox.Show("Аккаунт не был создан");
         }
 
-        public Boolean isUserExists()
+        /*public Boolean isUserExists()
         {
            
             DB db = new DB();
@@ -197,12 +179,12 @@ namespace Sale_of_motor_vehicles
             else
             return false;
 
-        }
+        }*/
 
         private void labelRegistor_Click(object sender, EventArgs e)
         {
             this.Hide(); //Закрытие тек окна
-            Авторизация awtoriza = new Авторизация();
+            Авторизация awtoriza = new Авторизация(context);
             awtoriza.Show();
 
         }

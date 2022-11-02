@@ -61,7 +61,6 @@ namespace Sale_of_motor_vehicles {
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(732, 553);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
@@ -100,7 +99,6 @@ namespace Sale_of_motor_vehicles {
             this.loginField.Name = "loginField";
             this.loginField.Size = new System.Drawing.Size(548, 44);
             this.loginField.TabIndex = 10;
-            this.loginField.TextChanged += new System.EventHandler(this.loginField_TextChanged);
             this.loginField.Enter += new System.EventHandler(this.loginField_Enter);
             this.loginField.Leave += new System.EventHandler(this.loginField_Leave);
             // 
@@ -181,7 +179,6 @@ namespace Sale_of_motor_vehicles {
             this.label1.TabIndex = 0;
             this.label1.Text = "Авторизация";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label1_MouseDown);
             this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label1_MouseMove);
             // 
@@ -196,7 +193,6 @@ namespace Sale_of_motor_vehicles {
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Авторизация";
             this.Text = "Autodas";
-            this.Load += new System.EventHandler(this.Авторизация_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

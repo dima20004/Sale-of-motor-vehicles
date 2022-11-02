@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Sale_of_motor_vehicles
 {
-    public partial class MainForm : Form
-    {
-        public MainForm()
-        {
+    public partial class MainForm : Form {
+		private Context context;
+        public MainForm(Context context) {
+			this.context = context;
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
         }

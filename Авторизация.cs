@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ClientMessaging;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Sale_of_motor_vehicles {
 	public partial class Авторизация : Form {
-		public Авторизация() {
+		private Context context;
+
+		public Авторизация(Context context) {
+			this.context = context;
+
 			InitializeComponent();
 
 			passField.UseSystemPasswordChar=true;
@@ -21,25 +26,7 @@ namespace Sale_of_motor_vehicles {
 			passField.Text = "Введите пароль";
 			passField.ForeColor= Color.Blue;
             this.StartPosition = FormStartPosition.CenterScreen;
-
-
         }
-
-		private void Авторизация_Load(object sender, EventArgs e) {
-
-		}
-
-		private void label1_Click(object sender, EventArgs e) {
-
-		}
-
-		private void button2_Click(object sender, EventArgs e) {
-			
-		}
-
-		private void button1_Click(object sender, EventArgs e) {
-
-		}
 
 		private void label3_Click(object sender, EventArgs e) {
 			Application.Exit();
@@ -69,62 +56,33 @@ namespace Sale_of_motor_vehicles {
 			}
 		}
 
-		private void buttonLogin_Click(object sender, EventArgs e)
-		{
+		private void buttonLogin_Click(object sender, EventArgs e) {
 			string loginUser = loginField.Text;
             string passUser = passField.Text;
          
 
-            if (loginField.Text == "Введите логин")
-            {
+            if (loginUser == "Введите логин") {
                 MessageBox.Show("Введите логин");
                 return;
             }
-            if (passField.Text == "Введите пароль")
-            {
+            if (passUser == "Введите пароль") {
                 MessageBox.Show("Введите пароль");
                 return;
             }
 
+			var accountCandidate = new AccountData{ login = loginUser, pass = passUser };
+			var result = context.messaging.attempt((it) => it.login(accountCandidate));
 
-            DB db = new DB();
-			DataTable table = new DataTable();
-
-			MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-			MySqlCommand command = new MySqlCommand("SELECT * FROM `users` WHERE `login`=@uL AND `pass`=@uP",db.GetConnection()); // Заглушки для безопасности, чтобы было сложнее взломать
-			command.Parameters.Add("@uL", MySqlDbType.VarChar).Value=loginUser;
-            command.Parameters.Add("@uP", MySqlDbType.VarChar).Value = passUser;
-
-			adapter.SelectCommand = command;
-			adapter.Fill(table);
-
-			if (table.Rows.Count > 0)
-			{
-				this.Hide();
-				MainForm mainform = new MainForm();
+			if (result && result.s) {
+				context.customer.updateAccount(accountCandidate);
+				MainForm mainform = new MainForm(context);
 				mainform.Show();
-
+				this.Hide();
 			}
-			else
+			else {
 				MessageBox.Show("Произошла ошибка, либо ваш аккаунт не зарегистрирован, либо вы ввели неправильно логин или пароль");
-
+			}
         }
-
-		private void panel1_Paint(object sender, PaintEventArgs e)
-		{
-
-		}
-
-		private void passField_TextChanged(object sender, EventArgs e)
-		{
-
-		}
-
-		private void loginField_TextChanged(object sender, EventArgs e)
-		{
-
-		}
 
 		private void loginField_Enter(object sender, EventArgs e)
 		{
@@ -165,7 +123,7 @@ namespace Sale_of_motor_vehicles {
 		private void labelRegistor_Click(object sender, EventArgs e)
 		{
 			this.Hide();
-			Регистрация redistraziy = new Регистрация();
+			Регистрация redistraziy = new Регистрация(context);
 			redistraziy.Show();
        
 
