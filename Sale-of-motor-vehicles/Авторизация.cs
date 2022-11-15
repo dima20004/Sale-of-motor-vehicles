@@ -1,5 +1,4 @@
-﻿using ClientMessaging;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,14 +13,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace Sale_of_motor_vehicles {
 	public partial class Авторизация : Form 
 	{
-		private Context context;
 
-		public Авторизация(Context context) 
+		public Авторизация() 
 		{
-			this.context = context;
 
 			InitializeComponent();
-
 			passField.UseSystemPasswordChar=true;
 			loginField.Text = "Введите логин";
 			loginField.ForeColor = Color.Blue;
@@ -81,19 +77,6 @@ namespace Sale_of_motor_vehicles {
                 return;
             }
 
-			var accountCandidate = new AccountData
-			{ 
-				login = loginUser, pass = passUser 
-			};
-			var result = context.messaging.attempt((it) => it.login(accountCandidate));
-
-			if (result && result.s) 
-			{
-				context.customer.updateAccount(accountCandidate);
-				MainForm mainform = new MainForm(context);
-				mainform.Show();
-				this.Hide();
-			}
 			else 
 			{
 				MessageBox.Show("Произошла ошибка, либо ваш аккаунт не зарегистрирован, либо вы ввели неправильно логин или пароль");
@@ -139,7 +122,7 @@ namespace Sale_of_motor_vehicles {
 		private void labelRegistor_Click(object sender, EventArgs e)
 		{
 			this.Hide();
-			Регистрация redistraziy = new Регистрация(context);
+			Регистрация redistraziy = new Регистрация();
 			redistraziy.Show();
        
 

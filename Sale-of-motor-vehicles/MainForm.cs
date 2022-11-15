@@ -12,9 +12,9 @@ using System.Windows.Forms;
 namespace Sale_of_motor_vehicles
 {
     public partial class MainForm : Form {
-		private Context context;
-        public MainForm(Context context) {
-			this.context = context;
+
+        public MainForm() 
+        {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 ;            label7.Text = "Приложение AutoDas подберет автомобиль для Вас\n10 лет на рынке\n" +

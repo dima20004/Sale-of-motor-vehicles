@@ -14,7 +14,7 @@ namespace Sale_of_motor_vehicles {
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Авторизация(context));
+			Application.Run(new Авторизация());
 		}
 	}
 }

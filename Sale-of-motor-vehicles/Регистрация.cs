@@ -1,21 +1,13 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sale_of_motor_vehicles
 {
     public partial class Регистрация : Form {
-		private Context context;
-        public Регистрация(Context context) {
-			this.context = context;
 
+        public Регистрация() 
+        {
             InitializeComponent();
             passField.UseSystemPasswordChar = true;
             userNameField.Text = "Введите имя";
@@ -144,17 +136,6 @@ namespace Sale_of_motor_vehicles
                 MessageBox.Show("Введите пароль");
                 return;
             }
-
-			var result = context.messaging.attempt((it) => it.register(
-				new ClientMessaging.AccountData{ 
-					login = loginField.Text, pass = passField.Text 
-				},
-				userNameField.Text,
-				userSurnameField.Text
-			));
-
-            if (result && result.s) MessageBox.Show("Аккаунт был создан");
-            else MessageBox.Show("Аккаунт не был создан");
         }
 
         /*public Boolean isUserExists()
@@ -184,9 +165,8 @@ namespace Sale_of_motor_vehicles
         private void labelRegistor_Click(object sender, EventArgs e)
         {
             this.Hide(); //Закрытие тек окна
-            Авторизация awtoriza = new Авторизация(context);
+            Авторизация awtoriza = new Авторизация();
             awtoriza.Show();
-
         }
 
         private void labelRegistor_MouseEnter(object sender, EventArgs e)
