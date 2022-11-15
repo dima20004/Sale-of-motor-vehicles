@@ -56,5 +56,10 @@ namespace Sale_of_motor_vehicles
             AboutUs pop = new AboutUs();
             pop.Show();
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -10,9 +10,8 @@ namespace Sale_of_motor_vehicles {
 		/// Главная точка входа для приложения.
 		/// </summary>
 		[STAThread]
-		static void Main() {
-			var context = new Context();
-
+		static void Main() 
+		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			Application.Run(new Авторизация(context));

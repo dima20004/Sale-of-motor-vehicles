@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32407.337
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sale of motor vehicles", "Sale-of-motor-vehicles\Sale of motor vehicles.csproj", "{013BFDD8-DD46-48F6-A4A8-23623DA4C547}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesServer", "SalesServer\SalesServer.csproj", "{F06309BF-0270-471C-9E69-58D24C3608FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{013BFDD8-DD46-48F6-A4A8-23623DA4C547}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{013BFDD8-DD46-48F6-A4A8-23623DA4C547}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{013BFDD8-DD46-48F6-A4A8-23623DA4C547}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F06309BF-0270-471C-9E69-58D24C3608FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F06309BF-0270-471C-9E69-58D24C3608FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F06309BF-0270-471C-9E69-58D24C3608FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F06309BF-0270-471C-9E69-58D24C3608FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

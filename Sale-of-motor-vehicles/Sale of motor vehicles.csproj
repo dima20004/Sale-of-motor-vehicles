@@ -110,24 +110,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SalesServer\ClientMessaging.cs">
-      <Link>ClientMessaging.cs</Link>
-    </Compile>
     <Compile Include="AboutUs.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AboutUs.Designer.cs">
       <DependentUpon>AboutUs.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs" />
-    <Compile Include="Context.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ServerQuery.cs" />
     <Compile Include="Авторизация.cs">
       <SubType>Form</SubType>
     </Compile>
