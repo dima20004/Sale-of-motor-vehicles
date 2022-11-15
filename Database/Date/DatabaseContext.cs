@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Database.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Database.Date
 {
@@ -8,5 +9,7 @@ namespace Database.Date
         {
             Database.EnsureCreated();
         }
+        public DbSet<User> User { get; set; }
+        public DbSet<Auto> Auto { get; set; }
     }
 }
