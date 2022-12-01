@@ -3,7 +3,7 @@ using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.ServiceModel;
 
-namespace Sale_of_motor_vehicles {
+namespace Common {
 	public class ServerQuery<T> : System.Runtime.Remoting.Proxies.RealProxy, IDisposable {
 		private ChannelFactory<T> factory;
 
@@ -46,24 +46,11 @@ namespace Sale_of_motor_vehicles {
 		}
 	}
 
-	public static class ClientServerQuery {
-		public static ClientMessaging.Messaging Create() {
-			return ServerQuery<ClientMessaging.Messaging>.Create("net.tcp://localhost:8080/client");
-		}
-	}
-
-	public delegate T MessagingAction<T>(ClientMessaging.Messaging it);
-
 	public static class EnhancedMessaging {
 
-		public static Attempt<T, Exception> 
-		attempt<T>(this ClientMessaging.Messaging it, MessagingAction<T> action) {
-			try {
-				return Attempt<T, Exception>.Success(action.Invoke(it));
-			}
-			catch(Exception e) {
-				return Attempt<T, Exception>.Failure(e);
-			}
+		public static Attempt<T, Exception> attempt<A, T>(this A it, Func<A, T> action) {
+			try { return Attempt<T, Exception>.Success(action.Invoke(it)); }
+			catch(Exception e) { return Attempt<T, Exception>.Failure(e); }
 		}
 	}
 

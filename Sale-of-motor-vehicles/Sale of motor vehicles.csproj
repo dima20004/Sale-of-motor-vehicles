@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Sale_of_motor_vehicles</RootNamespace>
     <AssemblyName>Sale of motor vehicles</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -110,64 +110,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SalesServer\Accounts.cs">
+      <Link>Accounts.cs</Link>
+    </Compile>
     <Compile Include="..\SalesServer\ClientMessaging.cs">
       <Link>ClientMessaging.cs</Link>
     </Compile>
-    <Compile Include="AboutUs.cs">
+    <Compile Include="..\SalesServer\Criteria.cs">
+      <Link>Criteria.cs</Link>
+    </Compile>
+    <Compile Include="ClientServerQuery.cs" />
+    <Compile Include="CriteriaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AboutUs.Designer.cs">
-      <DependentUpon>AboutUs.cs</DependentUpon>
+    <Compile Include="CriteriaForm.Designer.cs">
+      <DependentUpon>CriteriaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CriteriaList.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="MainForm.cs">
+    <Compile Include="FindAuto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="FindAuto.Designer.cs">
+      <DependentUpon>FindAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterForm.Designer.cs">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ServerQuery.cs" />
-    <Compile Include="Авторизация.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Авторизация.Designer.cs">
-      <DependentUpon>Авторизация.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Главная.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Главная.Designer.cs">
-      <DependentUpon>Главная.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Мои Анкеты.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Мои Анкеты.Designer.cs">
-      <DependentUpon>Мои Анкеты.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Покупки.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Покупки.Designer.cs">
-      <DependentUpon>Покупки.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Регистрация.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Регистрация.Designer.cs">
-      <DependentUpon>Регистрация.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="AboutUs.resx">
-      <DependentUpon>AboutUs.cs</DependentUpon>
+    <EmbeddedResource Include="CriteriaForm.resx">
+      <DependentUpon>CriteriaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="FindAuto.resx">
+      <DependentUpon>FindAuto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Авторизация.resx">
-      <DependentUpon>Авторизация.cs</DependentUpon>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -179,17 +169,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Главная.resx">
-      <DependentUpon>Главная.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Мои Анкеты.resx">
-      <DependentUpon>Мои Анкеты.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Покупки.resx">
-      <DependentUpon>Покупки.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Регистрация.resx">
-      <DependentUpon>Регистрация.cs</DependentUpon>
+    <EmbeddedResource Include="RegisterForm.resx">
+      <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -6,14 +6,12 @@ using System.Text;
 
 namespace ClientMessaging {
 
-	[Serializable] public struct AccountData {
-		public string login, pass;
-	}
-
 	[ServiceContract]
 	public interface Messaging {
-		[OperationContract] bool register(AccountData account, string name, string surname);
+		[OperationContract] Criteria.CriteriaInfo getCriteria();
 
-		[OperationContract] bool login(AccountData account);
+		[OperationContract] bool register(Accounts.AccountData account, string name, string surname);
+
+		[OperationContract] Accounts.Account? login(Accounts.AccountData account);
 	}
 }

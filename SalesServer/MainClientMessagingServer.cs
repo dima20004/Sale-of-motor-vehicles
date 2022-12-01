@@ -10,81 +10,44 @@ namespace SalesServer {
 
 	[ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = false)]
 	class MainClientMessagingServer : Messaging {
+		private static ConnectionView conn { get { 
+			return new SqlConnection(Properties.Settings1.Default.connectionString); 
+		} }
 
 		public MainClientMessagingServer() {
 			//test connection
 			using(var connection = new SqlConnection(Properties.Settings1.Default.connectionString)) {}
 		}
 
-		bool Messaging.login(AccountData account) {
-			using(
-			var connection = new SqlConnection(Properties.Settings1.Default.connectionString)) {
-			using(
-			var command = new SqlCommand(
-				@"
-				select cast(case 
-					when exists(
-						select *
-						from [Customers].[Authorization]
-						where [Login] = @Login and [Password] = @Password
-					)
-					then 1 
-					else 0 
-				end as bit);
-				",
-				connection
-			)) {
-			command.CommandType = System.Data.CommandType.Text;
-			command.Parameters.AddWithValue("@Login", account.login);
-			command.Parameters.AddWithValue("@Password", account.pass);
-
-			connection.Open();
-			using(
-			var reader = command.ExecuteReader()) {
-
-			if(!reader.Read()) throw new InvalidOperationException();
-			return (bool) reader[0];
-
-			}}}
+		Accounts.Account? Messaging.login(Accounts.AccountData account) {
+			using(var connection = conn) { return DBAccounts.loginAccount(conn, account); }
 		}
 
-		bool Messaging.register(AccountData account, string name, string surname) {
+		bool Messaging.register(Accounts.AccountData account, string name, string surname) {
+			using(var connection = conn) { return DBAccounts.registerAccount(
+				connection, account, name, surname, Accounts.ManagementRole.user
+			); }
+		}
+
+		Criteria.CriteriaInfo Messaging.getCriteria() {
+			using(var c = conn) {
 			using(
-			var connection = new SqlConnection(Properties.Settings1.Default.connectionString)) {
-			using(
-			var command = new SqlCommand(
-				@"
-				begin transaction;
-
-				begin try
-					insert into [Customers].[Authorization]([Login], [Password])
-					values(@Login, @Password);
-
-					insert into [Customers].[Accounts]([Id], [Name], [Surname])
-					values(scope_identity(), @Name, @Surname);
-
-					commit transaction;
-					select cast(1 as bit);
-				end try
-				begin catch
-					rollback transaction;
-					select cast(0 as bit);
-				end catch;
-				",
-				connection
-			)) {
+			var command = new SqlCommand(@"select [Id], [Name] from [Auto].[Brands]", c)) {
 			command.CommandType = System.Data.CommandType.Text;
-			command.Parameters.AddWithValue("@Login", account.login);
-			command.Parameters.AddWithValue("@Password", account.pass);
-			command.Parameters.AddWithValue("@Name", name);
-			command.Parameters.AddWithValue("@Surname", surname);
 
-			connection.Open();
+			var brands = new Dictionary<int, object>();
+
+			c.Open();
 			using(
 			var reader = command.ExecuteReader()) {
-			if(!reader.Read()) throw new InvalidOperationException();
-			return (bool) reader[0];
-			}}}
+			while(reader.Read()) brands.Add(reader.GetInt32(0), reader.GetString(1));
+			reader.Close();
+			command.Dispose();
+			c.Dispose();
+
+			return new Criteria.CriteriaInfo(brands);
+			}}
+			}
 		}
 	}
 }

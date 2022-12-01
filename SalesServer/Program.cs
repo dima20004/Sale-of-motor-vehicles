@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
 
 namespace SalesServer {
 	class Program {
@@ -11,6 +8,7 @@ namespace SalesServer {
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
 			ServiceHost clientHost = null;
+			ServiceHost adminHost = null;
 
             try {
 				string adress = "net.tcp://localhost:8080";
@@ -21,7 +19,15 @@ namespace SalesServer {
 				);
 				clientHost = new ServiceHost(clientServer, new Uri[] { new Uri(adress) });
 				clientHost.AddServiceEndpoint(typeof(ClientMessaging.Messaging), new NetTcpBinding(), "client");
-				clientHost.Opened += (a, b) => Console.WriteLine("Client server opened");
+				clientHost.Opened += (a, b) => Console.WriteLine("Client server opened\n");
+				clientHost.Open();
+
+				var adminServer = LoggingNoErrorProxy<AdminMessaging.Messaging>.Create(
+					"Админский сервер", new MainAdminMessagingServer()
+				);
+				clientHost = new ServiceHost(adminServer, new Uri[] { new Uri(adress) });
+				clientHost.AddServiceEndpoint(typeof(AdminMessaging.Messaging), new NetTcpBinding(), "admin");
+				clientHost.Opened += (a, b) => Console.WriteLine("Admin server opened\n");
 				clientHost.Open();
 
 				Console.ReadKey();
@@ -31,6 +37,7 @@ namespace SalesServer {
 			}
 			finally {
 				if(clientHost != null) clientHost.Close();
+				if(adminHost != null) adminHost.Close();
 			}
 		}
 	}
