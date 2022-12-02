@@ -27,7 +27,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.loginButton = new System.Windows.Forms.Button();
-			this.accountLabel = new System.Windows.Forms.Label();
+			this.autosLabel = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -37,6 +37,7 @@ namespace Sale_of_motor_vehicles {
 			this.findButton = new System.Windows.Forms.Button();
 			this.criteriaTable = new System.Windows.Forms.TableLayoutPanel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.autosTable = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
@@ -73,7 +74,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel2.Controls.Add(this.loginButton, 4, 1);
-			this.tableLayoutPanel2.Controls.Add(this.accountLabel, 2, 1);
+			this.tableLayoutPanel2.Controls.Add(this.autosLabel, 2, 1);
 			this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -107,20 +108,20 @@ namespace Sale_of_motor_vehicles {
 			this.loginButton.UseVisualStyleBackColor = false;
 			this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
 			// 
-			// accountLabel
+			// autosLabel
 			// 
-			this.accountLabel.AutoSize = true;
-			this.accountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.accountLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.accountLabel.Location = new System.Drawing.Point(830, 10);
-			this.accountLabel.Margin = new System.Windows.Forms.Padding(0);
-			this.accountLabel.Name = "accountLabel";
-			this.accountLabel.Size = new System.Drawing.Size(53, 29);
-			this.accountLabel.TabIndex = 1;
-			this.accountLabel.Text = "Аккаунт";
-			this.accountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.accountLabel.UseMnemonic = false;
-			this.accountLabel.Click += new System.EventHandler(this.acountLabel_Click);
+			this.autosLabel.AutoSize = true;
+			this.autosLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.autosLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.autosLabel.Location = new System.Drawing.Point(740, 10);
+			this.autosLabel.Margin = new System.Windows.Forms.Padding(0);
+			this.autosLabel.Name = "autosLabel";
+			this.autosLabel.Size = new System.Drawing.Size(143, 29);
+			this.autosLabel.TabIndex = 1;
+			this.autosLabel.Text = "Добавить объявление";
+			this.autosLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.autosLabel.UseMnemonic = false;
+			this.autosLabel.Click += new System.EventHandler(this.acountLabel_Click);
 			// 
 			// panel1
 			// 
@@ -142,6 +143,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
 			this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
 			this.tableLayoutPanel3.Controls.Add(this.panel2, 1, 0);
+			this.tableLayoutPanel3.Controls.Add(this.autosTable, 2, 0);
 			this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 49);
 			this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -232,6 +234,7 @@ namespace Sale_of_motor_vehicles {
 			this.findButton.TabIndex = 4;
 			this.findButton.Text = "Найти";
 			this.findButton.UseVisualStyleBackColor = false;
+			this.findButton.Click += new System.EventHandler(this.findButton_Click);
 			// 
 			// criteriaTable
 			// 
@@ -259,6 +262,22 @@ namespace Sale_of_motor_vehicles {
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1, 507);
 			this.panel2.TabIndex = 1;
+			// 
+			// autosTable
+			// 
+			this.autosTable.AutoScroll = true;
+			this.autosTable.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.autosTable.ColumnCount = 1;
+			this.autosTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.autosTable.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.autosTable.Location = new System.Drawing.Point(207, 0);
+			this.autosTable.Margin = new System.Windows.Forms.Padding(0);
+			this.autosTable.Name = "autosTable";
+			this.autosTable.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
+			this.autosTable.RowCount = 1;
+			this.autosTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+			this.autosTable.Size = new System.Drawing.Size(825, 507);
+			this.autosTable.TabIndex = 2;
 			// 
 			// FindAuto
 			// 
@@ -288,7 +307,7 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.Button loginButton;
-		private System.Windows.Forms.Label accountLabel;
+		private System.Windows.Forms.Label autosLabel;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
 		private System.Windows.Forms.Panel panel2;
@@ -298,5 +317,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.TableLayoutPanel criteriaTable;
+		private System.Windows.Forms.TableLayoutPanel autosTable;
 	}
 }

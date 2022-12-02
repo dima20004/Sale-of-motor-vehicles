@@ -48,6 +48,13 @@ namespace Common {
 
 	public static class EnhancedMessaging {
 
+		public delegate void Func0<T>(T t);
+
+		public static Attempt<object, Exception> attempt<A>(this A it, Func0<A> action) {
+			try { action.Invoke(it); return Attempt<object, Exception>.Success(null); }
+			catch(Exception e) { return Attempt<object, Exception>.Failure(e); }
+		}
+
 		public static Attempt<T, Exception> attempt<A, T>(this A it, Func<A, T> action) {
 			try { return Attempt<T, Exception>.Success(action.Invoke(it)); }
 			catch(Exception e) { return Attempt<T, Exception>.Failure(e); }

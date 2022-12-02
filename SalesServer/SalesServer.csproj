@@ -65,9 +65,11 @@
   <ItemGroup>
     <Compile Include="Accounts.cs" />
     <Compile Include="AdminMessaging.cs" />
+    <Compile Include="Autos.cs" />
     <Compile Include="ClientMessaging.cs" />
     <Compile Include="Criteria.cs" />
     <Compile Include="DBAccounts.cs" />
+    <Compile Include="DBCriteria.cs" />
     <Compile Include="LoggingNoErrorProxy.cs" />
     <Compile Include="MainAdminMessagingServer.cs" />
     <Compile Include="MainClientMessagingServer.cs" />

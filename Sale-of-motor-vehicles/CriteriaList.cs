@@ -28,8 +28,8 @@ namespace Sale_of_motor_vehicles {
 					break;
 				}
 				
-				var itP = criteria.importance(it.type);
-				var oP  = criteria.importance(o .type);
+				var itP = CriteriaInfo.importance(it.type);
+				var oP  = CriteriaInfo.importance(o .type);
 
 				if(itP < oP || (itP == oP && it.type < o.type)) low = mid + 1;
 				else high = mid - 1;

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Criteria {
 
@@ -72,7 +69,7 @@ namespace Criteria {
 			}
 		}
 
-		public int importance(CriteriumType type) {
+		public static int importance(CriteriumType type) {
 			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 3);
 			switch(type) {
 				case CriteriumType.priceFrom: return 100;
@@ -88,19 +85,7 @@ namespace Criteria {
 			return new Criterium(type, value);
 		}
 
-		public string dbCheck(CriteriumType type, object value) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 3);
-			checkValueCorrect(type, value);
-
-			switch(type) {
-				case CriteriumType.priceFrom: return "@Price >= " + value;
-				case CriteriumType.priceTo	: return "@Price <= " + value;
-				case CriteriumType.brand	: return "@Brand = " + value;
-				default: throw new NotSupportedException();
-			}
-		}
-
-		private void checkValueCorrect(CriteriumType type, object value) {
+		public void checkValueCorrect(CriteriumType type, object value) {
 			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 3);
 			Debug.Assert(Enum.GetValues(typeof(ValueType)).Length == 2);
 

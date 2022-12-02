@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,16 +24,14 @@ namespace Sale_of_motor_vehicles {
 		void updateLoginDisplay() {
 			if(context.customer.LoggedIn) {
 				loginButton.Text = "Выйти";
-				accountLabel.Text = context.customer.account.Value.name;
 			}
 			else {
 				loginButton.Text = "Вход/Регистрация";
-				accountLabel.Text = "Аккаунт";
 			}
 		}
 
 		private void acountLabel_Click(object sender, EventArgs e) {
-			
+			new AutoAddForm(context).ShowDialog();
 		}
 
 		private void loginButton_Click(object sender, EventArgs e) {
@@ -104,6 +103,39 @@ namespace Sale_of_motor_vehicles {
 
 			criteriaTable.ResumeLayout(false);
 			criteriaTable.PerformLayout();
+		}
+
+		private void findButton_Click(object sender, EventArgs e) {
+			var result = context.messaging.attempt((it) => it.findAdverts(critList.List));
+			if(result) {
+				autosTable.SuspendLayout();
+				autosTable.Controls.Clear();
+				autosTable.RowStyles.Clear();
+				autosTable.RowCount = 0;
+
+				var autos = result.s;
+
+				if(autos.Count == 0) {
+					autosTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+					autosTable.RowCount++;
+					autosTable.Controls.Add(new Label{ 
+						Text = "Объявлений нет", Font =  new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+						TextAlign = ContentAlignment.TopCenter,
+						Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+					});
+				}
+				else for(int i = 0; i < autos.Count; i++) {
+					var auto = autos[i];
+					var cont = new AutoControl(context, auto){
+						Margin = new Padding(0, 0, 0, 10),
+						Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+					};
+					autosTable.Controls.Add(cont, 0, autosTable.RowCount++);
+				}
+
+				autosTable.ResumeLayout(false);
+				autosTable.PerformLayout();
+			}
 		}
 	}
 }

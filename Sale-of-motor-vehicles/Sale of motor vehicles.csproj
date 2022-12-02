@@ -113,11 +113,26 @@
     <Compile Include="..\SalesServer\Accounts.cs">
       <Link>Accounts.cs</Link>
     </Compile>
+    <Compile Include="..\SalesServer\Autos.cs">
+      <Link>Autos.cs</Link>
+    </Compile>
     <Compile Include="..\SalesServer\ClientMessaging.cs">
       <Link>ClientMessaging.cs</Link>
     </Compile>
     <Compile Include="..\SalesServer\Criteria.cs">
       <Link>Criteria.cs</Link>
+    </Compile>
+    <Compile Include="AutoAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoAddForm.Designer.cs">
+      <DependentUpon>AutoAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AutoControl.Designer.cs">
+      <DependentUpon>AutoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ClientServerQuery.cs" />
     <Compile Include="CriteriaForm.cs">
@@ -150,6 +165,12 @@
     <Compile Include="ServerQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AutoAddForm.resx">
+      <DependentUpon>AutoAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoControl.resx">
+      <DependentUpon>AutoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CriteriaForm.resx">
       <DependentUpon>CriteriaForm.cs</DependentUpon>
     </EmbeddedResource>
