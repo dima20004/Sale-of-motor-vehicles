@@ -47,19 +47,34 @@ namespace Sale_of_motor_vehicles {
 			}
 		}
 
-		public CriteriaForm(Context context) {
+		public CriteriaForm(Context context, Criterium crit) {
 			this.context = context;
 
 			InitializeComponent();
 
 			criteriaTypeCombobox.DataSource = new BindingSource{ DataSource = new CritListMap{ info = context.criteria } };
+
+			if(crit != null) {
+				var list = System.Enum.GetValues(typeof(CriteriumType));
+				var i = 0;
+				for(; i < list.Length; i++) {
+					if((CriteriumType) list.GetValue(i) == crit.type) break;
+				}
+				criteriaTypeCombobox.SelectedIndex = i;
+				value = crit.value;
+				updateValue();
+			}
 		}
 
 		private void criteriaTypeCombobox_SelectedIndexChanged(object sender, System.EventArgs e) {
-			var type = (Criteria.CriteriumType) System.Enum.GetValues(typeof(Criteria.CriteriumType)).GetValue(criteriaTypeCombobox.SelectedIndex);
-			
 			value = null;
 
+			updateValue();
+		}
+
+		private void updateValue() {
+			var type = (Criteria.CriteriumType) System.Enum.GetValues(typeof(Criteria.CriteriumType)).GetValue(criteriaTypeCombobox.SelectedIndex);
+			
 			System.Diagnostics.Debug.Assert(System.Enum.GetValues(typeof(ValueType)).Length == 6);
 			Control control;
 			switch(context.criteria.valueType(type)) {
@@ -71,6 +86,7 @@ namespace Sale_of_motor_vehicles {
 					c.Maximum = int.MaxValue;
 					c.Value = 1;
 
+					if(value != null) c.Value = (int) value;
 					c.ValueChanged += (a, b) => { value = (int) c.Value; };
 					value = (int) c.Value;
 
@@ -83,10 +99,16 @@ namespace Sale_of_motor_vehicles {
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 					//https://stackoverflow.com/a/36053487/18704284
 					c.BindingContext = this.BindingContext;
-					c.DataSource = new BindingSource{ DataSource = context.criteria.valuesNames(type) };
+					var source = context.criteria.valuesNames(type);
+					c.DataSource = new BindingSource{ DataSource = source };
 					c.DisplayMember = "Value";
 
-					c.SelectedIndex = 0;
+					var index = 0;
+					if(value != null) {
+						foreach(var pair in source) if(pair.Key == (int) value) break;
+						else index++;
+					}
+					c.SelectedIndex = index;
 					c.SelectedIndexChanged += (a, b) => { value = ((KeyValuePair<int, string>) c.SelectedItem).Key; };
 					value = ((KeyValuePair<int, string>) c.SelectedItem).Key;
 
@@ -97,6 +119,7 @@ namespace Sale_of_motor_vehicles {
 					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
+					if(value != null) c.Text = value.ToString();
 					c.TextChanged += (a, b) => { value = c.Text; };
 					value = c.Text;
 
@@ -109,6 +132,7 @@ namespace Sale_of_motor_vehicles {
 					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
+					if(value != null) c.Value = (int) value;
 					c.ValueChanged += (a, b) => { value = (int) c.Value; };
 					value = (int) c.Value;
 
@@ -120,6 +144,7 @@ namespace Sale_of_motor_vehicles {
 					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
+					if(value != null) c.Value = (System.DateTime) value;
 					c.ValueChanged += (a, b) => { value = c.Value; };
 					value = c.Value;
 
@@ -132,6 +157,7 @@ namespace Sale_of_motor_vehicles {
 					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 
+					if(value != null) c.Value = (int) value;
 					c.ValueChanged += (a, b) => { value = (int) c.Value; };
 					value = (int) c.Value;
 

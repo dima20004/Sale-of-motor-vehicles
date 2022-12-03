@@ -48,7 +48,7 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void addCriteriaButton_Click(object sender, EventArgs e) {
-			var form = new CriteriaForm(context);
+			var form = new CriteriaForm(context, null);
 			if(form.ShowDialog() == DialogResult.OK) {
 				critList.Add(form.criterium);
 				
@@ -63,8 +63,19 @@ namespace Sale_of_motor_vehicles {
 			criteriaTable.RowStyles.Clear();
 			criteriaTable.RowCount = cl.Count + 1;
 
+
 			for(int i = 0; i < cl.Count; i++) {
 				var it = cl[i];
+
+				var j = i;
+				EventHandler eh = (a, b) => {
+					var form = new CriteriaForm(context, it);
+					if(form.ShowDialog() == DialogResult.OK) {
+						critList.List.RemoveAt(j);
+						critList.Add(form.criterium);
+						updateCritListDisplay();
+					}
+				};
 
 				criteriaTable.RowStyles.Add(new RowStyle(SizeType.AutoSize)); 
 
@@ -74,6 +85,7 @@ namespace Sale_of_motor_vehicles {
 				c1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
 				c1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				c1.TextAlign = ContentAlignment.MiddleLeft;
+				c1.Click += eh;
 
 				criteriaTable.Controls.Add(c1, 1, i);
 
@@ -83,6 +95,7 @@ namespace Sale_of_motor_vehicles {
 				c2.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
 				c2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				c2.TextAlign = ContentAlignment.MiddleLeft;
+				c2.Click += eh;
 
 				criteriaTable.Controls.Add(c2, 2, i);
 
@@ -93,7 +106,6 @@ namespace Sale_of_motor_vehicles {
 				c3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
 				c3.Dock = DockStyle.Fill;
 				c3.TextAlign = ContentAlignment.MiddleCenter;
-				var j = i;
 				c3.Click += (a, b) => { critList.List.RemoveAt(j); updateCritListDisplay(); };
 
 				criteriaTable.Controls.Add(c3, 0, i);
