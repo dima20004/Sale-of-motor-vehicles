@@ -52,9 +52,56 @@ namespace Sale_of_motor_vehicles {
 				)
 			};
 
-			pictureBox1.Image = decodeImage(auto?.image);
+			updateFields();
 
 			updateEditMode();
+		}
+
+		private void updateFields() {
+			if(auto == null) return;
+
+			brandCB.SelectedIndex = findKey(
+				context.criteria.values(Criteria.CriteriumType.brand),
+				auto.brand
+			);
+			modelTB.Text = auto.model;
+			manufYearNUD.Value = auto.manufYear;
+			transCB.SelectedIndex = findKey(
+				context.criteria.values(Criteria.CriteriumType.trans),
+				(int) auto.trans
+			);
+			typeCB.SelectedIndex = findKey(
+				context.criteria.values(Criteria.CriteriumType.type),
+				(int) auto.type
+			);
+			engineTypeCB.SelectedIndex = findKey(
+				context.criteria.values(Criteria.CriteriumType.engineType),
+				(int) auto.engineType
+			);
+			mileageNUD.Value = auto.mileageKm;
+			stWheelCB.SelectedIndex = findKey(
+				context.criteria.values(Criteria.CriteriumType.stWheel),
+				(int) auto.stWheel
+			);
+			enginePowerNUD.Value = auto.enginePower;
+			colorCB.SelectedIndex = findKey(
+				context.criteria.values(Criteria.CriteriumType.color),
+				(int) auto.color
+			);
+			ownersCountNUD.Value = auto.ownersCount;
+			aquDateDTP.Value = auto.aquisitionDate;
+			priceNUD.Value = auto.priceRub;
+
+			descriptionTextbox.Text = auto.description;
+
+			pictureBox1.Image = decodeImage(auto.image);
+		}
+
+		private int findKey<K, V>(Dictionary<K, V> d, K key) {
+			int i = 0;
+			foreach(var pair in d) if(Equals(key, pair.Key)) return i;
+			else i++;
+			return -1;
 		}
 
 		private Image decodeImage(byte[] img) {
@@ -76,7 +123,7 @@ namespace Sale_of_motor_vehicles {
 			manufYearNUD.Enabled = en;
 			transCB.Enabled = en;
 			typeCB.Enabled = en;
-			enginePowerNUD.Enabled = en;
+			engineTypeCB.Enabled = en;
 			mileageNUD.Enabled = en;
 			stWheelCB.Enabled = en;
 			enginePowerNUD.Enabled = en;
@@ -93,7 +140,7 @@ namespace Sale_of_motor_vehicles {
 			manufYearNUD.BackColor = System.Drawing.Color.White;
 			transCB.BackColor = System.Drawing.Color.White;
 			typeCB.BackColor = System.Drawing.Color.White;
-			enginePowerNUD.BackColor = System.Drawing.Color.White;
+			engineTypeCB.BackColor = System.Drawing.Color.White;
 			mileageNUD.BackColor = System.Drawing.Color.White;
 			stWheelCB.BackColor = System.Drawing.Color.White;
 			enginePowerNUD.BackColor = System.Drawing.Color.White;
@@ -107,7 +154,6 @@ namespace Sale_of_motor_vehicles {
 			modelTB.BorderStyle = br;
 			modelTB.BorderStyle = br;
 			manufYearNUD.BorderStyle = br;
-			enginePowerNUD.BorderStyle = br;
 			mileageNUD.BorderStyle = br;
 			enginePowerNUD.BorderStyle = br;
 			ownersCountNUD.BorderStyle = br;

@@ -562,7 +562,7 @@ namespace Sale_of_motor_vehicles {
 			this.ownersCountNUD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ownersCountNUD.Location = new System.Drawing.Point(154, 277);
 			this.ownersCountNUD.Maximum = new decimal(new int[] {
-            250,
+            120,
             0,
             0,
             0});

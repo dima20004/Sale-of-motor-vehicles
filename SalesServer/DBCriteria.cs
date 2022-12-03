@@ -17,7 +17,7 @@ namespace SalesServer {
 				case CriteriumType.priceFrom:			return tn + ".[Price]>=" + pn;
 				case CriteriumType.priceTo:				return tn + ".[Price]<=" + pn;
 				case CriteriumType.brand:				return tn + ".[Brand]=" + pn;
-				case CriteriumType.model:				return "lower(" + tn + ".[Model]) like lower(" + pn + ")";
+				case CriteriumType.model:				return "lower(" + tn + ".[Model]) like concat('%',lower(" + pn + "),'%')";
 				case CriteriumType.manufYearFrom:		return tn + ".[ManufYear]>=" + pn;
 				case CriteriumType.manufYearTo:			return tn + ".[ManufYear]<=" + pn;
 				case CriteriumType.trans:				return tn + ".[Trans]=" + pn;
