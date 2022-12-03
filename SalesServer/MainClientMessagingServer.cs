@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.IO;
 using System.ServiceModel;
+using Accounts;
 using Autos;
 using ClientMessaging;
 using Criteria;
@@ -71,7 +72,7 @@ namespace SalesServer {
 					[AquisitionDate], [Description],
 					[Owner], [Image]
 				from [Auto].[Automobiles]
-				where " + chs.str, 
+				where [SoldOutDate] is null and " + chs.str, 
 				c
 			)) {
 			command.CommandType = System.Data.CommandType.Text;
@@ -134,7 +135,6 @@ namespace SalesServer {
 					update [Auto].[Automobiles]
 					set
 						[Price] = @Price,
-						[Owner] = @Owner,
 						[Brand] = @Brand,
 						[Model] = @Model,
 						[ManufYear] = @ManufYear,
@@ -149,7 +149,8 @@ namespace SalesServer {
 						[AquisitionDate] = @AquisitionDate,
 						[Description] = @Description,
 						[Image] = @Image
-					where [Id] = @Id
+					where [Id] = @Id and [SoldOutDate] is null
+						and [Owner] = @Owner
 
 					select cast(case when @@rowcount = 0 then 0 else 1 end as bit); 
 				end", 
@@ -194,12 +195,62 @@ namespace SalesServer {
 		}
 
 		private object encodeImageDatabase(byte[] img) {
-			if(img == null) return DBNull.Value;
+			if(img == null) return System.Data.SqlTypes.SqlBinary.Null;
 			else using(var s = new MemoryStream(img, false)) { 
 			using(var s2 = new MemoryStream()) { 
 			System.Drawing.Image.FromStream(s).Save(s2, System.Drawing.Imaging.ImageFormat.Jpeg);
 			return s2.ToArray();
 			}}
-		} 
+		}
+
+		void Messaging.buyAdvert(Auto auto) {
+			using(var c = conn) {
+			using(
+			var command = new SqlCommand(@"
+				update [Auto].[Automobiles]
+				set [SoldOutDate] = getdate()
+				where [Id] = @Id and [SoldOutDate] is null;
+				
+				select cast(case when @@rowcount = 0 then 0 else 1 end as bit);", 
+				c
+			)) {
+			command.CommandType = System.Data.CommandType.Text;
+			command.Parameters.AddWithValue("@Id", auto.id);
+
+			var autos = new List<Auto>();
+			c.Open();
+			using(
+			var reader = command.ExecuteReader()) {
+			reader.Read();
+			if((bool) reader[0] == false) throw new Exception();
+			}}}
+		}
+
+		void Messaging.deleteAdvert(AccountData data, int id) {
+			using(var c = conn) {
+			using(
+			var command = new SqlCommand(@"
+				delete [Auto].[Automobiles]
+				where [Id] = @Id and [SoldOutDate] is null
+					and [Owner] = @Owner;
+
+				select cast(case when @@rowcount = 0 then 0 else 1 end as bit);", 
+				c
+			)) {
+			command.CommandType = System.Data.CommandType.Text;
+			command.Parameters.AddWithValue("@Id", id);
+			var ownerParam = command.Parameters.Add("@Owner", System.Data.SqlDbType.Int);
+
+			var autos = new List<Auto>();
+			c.Open();
+
+			var accountId = DBAccounts.loginAccountId(conn, data);
+			ownerParam.Value = accountId.Value;
+
+			using(var res = command.ExecuteReader()) {
+			res.Read();
+			if((bool) res[0] == false) throw new Exception();
+			}}}
+		}
 	}
 }

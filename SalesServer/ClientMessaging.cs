@@ -17,5 +17,9 @@ namespace ClientMessaging {
 		[OperationContract] List<Autos.Auto> findAdverts(List<Criteria.Criterium> crits);
 
 		[OperationContract] int addAdvert(Accounts.AccountData data, Autos.Auto auto);
+
+		[OperationContract] void deleteAdvert(Accounts.AccountData data, int id);
+
+		[OperationContract] void buyAdvert(Autos.Auto auto);
 	}
 }

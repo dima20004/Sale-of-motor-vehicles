@@ -36,15 +36,18 @@ namespace SalesServer {
 				sb.AppendFormat(
 					"{0}: ответ ({1}ms) на `{2}`. результат - `{3}` = {{ ",
 					prefix,
-					watch.Elapsed.TotalMilliseconds, methodCall.MethodName, result.GetType()
+					watch?.Elapsed.TotalMilliseconds, methodCall?.MethodName, result?.GetType()
 				);
 
-				var first = true;
-				foreach(var field in result.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
-					if(!first) sb.Append(", ");
-					sb.Append(field.GetValue(result)?.GetType().ToString() ?? "null");
-					first = false;
+				if(result != null) {
+					var first = true;
+					foreach(var field in result.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Instance)) {
+						if(!first) sb.Append(", ");
+						sb.Append(field.GetValue(result)?.GetType().ToString() ?? "null");
+						first = false;
+					}
 				}
+
 				sb.Append(" }");
 				sb.Append("\n");
 

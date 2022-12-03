@@ -63,6 +63,7 @@ namespace Sale_of_motor_vehicles {
 			this.deleteImageLabel = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.button3 = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -96,12 +97,14 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.tableLayoutPanel5.AutoSize = true;
 			this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.tableLayoutPanel5.ColumnCount = 3;
+			this.tableLayoutPanel5.ColumnCount = 4;
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel5.Controls.Add(this.button1, 1, 0);
-			this.tableLayoutPanel5.Controls.Add(this.button2, 2, 0);
+			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel5.Controls.Add(this.button3, 1, 0);
+			this.tableLayoutPanel5.Controls.Add(this.button1, 2, 0);
+			this.tableLayoutPanel5.Controls.Add(this.button2, 3, 0);
 			this.tableLayoutPanel5.Controls.Add(this.statusLabel, 0, 0);
 			this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 511);
@@ -109,7 +112,6 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 1;
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(780, 33);
 			this.tableLayoutPanel5.TabIndex = 4;
 			// 
@@ -162,7 +164,7 @@ namespace Sale_of_motor_vehicles {
 			this.statusLabel.ForeColor = System.Drawing.Color.Black;
 			this.statusLabel.Location = new System.Drawing.Point(3, 0);
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.Size = new System.Drawing.Size(590, 33);
+			this.statusLabel.Size = new System.Drawing.Size(509, 33);
 			this.statusLabel.TabIndex = 1;
 			// 
 			// tableLayoutPanel2
@@ -618,6 +620,27 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
+			// button3
+			// 
+			this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button3.AutoSize = true;
+			this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.button3.BackColor = System.Drawing.Color.Transparent;
+			this.button3.FlatAppearance.BorderSize = 0;
+			this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.button3.Location = new System.Drawing.Point(525, 0);
+			this.button3.Margin = new System.Windows.Forms.Padding(10, 0, 0, 0);
+			this.button3.Name = "button3";
+			this.button3.Padding = new System.Windows.Forms.Padding(3);
+			this.button3.Size = new System.Drawing.Size(71, 33);
+			this.button3.TabIndex = 3;
+			this.button3.Text = "Удалить";
+			this.button3.UseVisualStyleBackColor = false;
+			this.button3.Click += new System.EventHandler(this.button3_Click);
+			// 
 			// AutoAddForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -689,5 +712,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.NumericUpDown priceNUD;
 		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button button3;
 	}
 }

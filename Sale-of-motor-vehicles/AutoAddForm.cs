@@ -11,7 +11,7 @@ namespace Sale_of_motor_vehicles {
 		private Auto auto; 
 		private bool viewing;
 
-		private bool canEdit{ get{ return auto?.id == null || auto?.id == context.customer.account?.id; } }
+		private bool canEdit{ get{ return auto?.owner == null || auto?.owner == context.customer.account?.id; } }
 
 		public AutoAddForm(Context context, Auto auto, bool viewing) {
 			this.context = context;
@@ -110,6 +110,9 @@ namespace Sale_of_motor_vehicles {
 			priceNUD.BorderStyle = br;
 			descriptionTextbox.BorderStyle = br;
 			deleteImageLabel.BorderStyle = br;
+
+			button3.Text = canEdit ? "Удалить" : "Купить";
+			button3.Visible = auto != null;
 			
 			if(viewing) {
 				if(canEdit) {
@@ -197,6 +200,8 @@ namespace Sale_of_motor_vehicles {
 						
 						viewing = true;
 						auto = val;
+
+						updateEditMode();
 					}
 					else {
 						statusLabel.ForeColor = System.Drawing.Color.Firebrick;
@@ -216,6 +221,8 @@ namespace Sale_of_motor_vehicles {
 						
 						viewing = true;
 						auto = val;
+
+						updateEditMode();
 					}
 					else {
 						statusLabel.ForeColor = System.Drawing.Color.Firebrick;
@@ -242,6 +249,26 @@ namespace Sale_of_motor_vehicles {
 			else if(!viewing) {
 				viewing = true;
 				updateEditMode();
+			}
+		}
+
+		private void button3_Click(object sender, EventArgs e) {
+			if(auto == null) return;
+
+			var res = context.messaging.attempt((it) => it.deleteAdvert(context.customer.accountData, auto.id));
+
+			if(res) {
+				statusLabel.ForeColor = System.Drawing.Color.Black;
+				statusLabel.Text = "Объявление удалено";
+
+				auto = null;
+				viewing = true;
+
+				updateEditMode();
+			}
+			else {
+				statusLabel.ForeColor = System.Drawing.Color.Firebrick;
+				statusLabel.Text = res.f.Message;
 			}
 		}
 	}
