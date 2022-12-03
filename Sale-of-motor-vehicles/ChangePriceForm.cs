@@ -26,7 +26,7 @@ namespace Sale_of_motor_vehicles {
 
 		private void buyButton_Click(object sender, EventArgs e) {
 			var np = (int) numericUpDown1.Value;
-			var res = context.messaging.attempt((it) => it.buyAdvert(auto.id, np));
+			var res = context.messaging.attempt((it) => it.buyAdvert(context.customer.accountData, auto.id, np));
 
 			if(res) {
 				auto.soldOutDate = res.s;

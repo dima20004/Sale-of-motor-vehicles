@@ -115,7 +115,35 @@ namespace Sale_of_motor_vehicles {
 			var en = !viewing;
 			var br = viewing ? BorderStyle.None : BorderStyle.FixedSingle;
 
-			soldStatusLabel.Text = "Статус: " + (auto != null && auto.soldOutDate != null ? "продано" : "не продано");
+			var sb = new System.Text.StringBuilder();
+			{
+				var owner = auto == null ? context.customer.account.Value.id : auto.owner;
+				sb.Clear().Append("Создал: ");
+
+				var fn = context.messaging.attempt((it) => it.getAccountInfo(owner));
+				if(fn) sb.Append(fn.s.name).Append(" ").Append(fn.s.surname);
+				else sb.Append("неизвестно");
+
+				sb.Append(" (").Append(owner).Append(")");
+
+				authorLabel.Text = sb.ToString();
+			}
+
+			{ 
+				sb.Clear().Append("Статус: ").Append(auto != null && auto.soldOutDate != null ? "продано" : "не продано");
+
+				if(auto != null && auto.soldOutDate != null) {
+					sb.Append(", ");
+
+					var sn = context.messaging.attempt((it) => it.getAccountInfo(auto.soldOutOwner));
+					if(sn) sb.Append(sn.s.name).Append(" ").Append(sn.s.surname);
+					else sb.Append("неизвестно");
+
+					sb.Append(" (").Append(auto.soldOutOwner).Append(")");
+				}
+
+				soldStatusLabel.Text = sb.ToString();
+			}
 			
 			pictureBox1.Enabled = en;
 			brandCB.Enabled = en;
@@ -164,7 +192,8 @@ namespace Sale_of_motor_vehicles {
 			deleteButton.Visible = auto != null
 				&& auto.owner == context.customer.account?.id
 				&& auto.soldOutDate == null;
-			sellButton.Visible = auto != null && auto.soldOutDate == null;
+			sellButton.Visible = context.customer.LoggedIn
+				&& auto != null && auto.soldOutDate == null;
 			
 			if(viewing) {
 				button2.Visible = true;

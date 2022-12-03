@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +30,18 @@ namespace Sale_of_motor_vehicles {
 
 			descrtiptionLabel.Text = auto.description;
 
-			soldStatusLabel.Text = auto.soldOutDate != null ? "Продано" : "Продаётся";
+			var fn = context.messaging.attempt((it) => it.getAccountInfo(auto.owner));
+			if(fn) authorLabel.Text = fn.s.name + " " + fn.s.surname + " (" + auto.owner + ")";
+			else authorLabel.Text = "Неизвестно" + " (" + auto.owner + ")";
+
+			soldStatusLabel.Text = auto.soldOutDate != null ? "Продал:" : "Продаётся";
+
+			if(auto.soldOutDate != null) {
+				var sn = context.messaging.attempt((it) => it.getAccountInfo(auto.soldOutOwner));
+				if(sn) soldLabel.Text = sn.s.name + " " + sn.s.surname + " (" + auto.owner + ")";
+				else soldLabel.Text = "Неизвестно" + " (" + auto.owner + ")";
+			}
+			else soldLabel.Text = "";
 		}
 
 		private Image decodeImage(byte[] img) {

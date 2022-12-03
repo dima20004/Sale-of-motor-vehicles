@@ -33,6 +33,9 @@ namespace Sale_of_motor_vehicles {
 			this.descrtiptionLabel = new System.Windows.Forms.Label();
 			this.showButton = new System.Windows.Forms.Button();
 			this.soldStatusLabel = new System.Windows.Forms.Label();
+			this.label3 = new System.Windows.Forms.Label();
+			this.authorLabel = new System.Windows.Forms.Label();
+			this.soldLabel = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -71,23 +74,28 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.tableLayoutPanel2.ColumnCount = 2;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel2.Controls.Add(this.NameLabel, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.priceLabel, 0, 1);
 			this.tableLayoutPanel2.Controls.Add(this.characteristicsLabel, 0, 2);
 			this.tableLayoutPanel2.Controls.Add(this.descrtiptionLabel, 0, 3);
 			this.tableLayoutPanel2.Controls.Add(this.showButton, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.soldStatusLabel, 1, 2);
+			this.tableLayoutPanel2.Controls.Add(this.soldLabel, 1, 5);
+			this.tableLayoutPanel2.Controls.Add(this.label3, 1, 2);
+			this.tableLayoutPanel2.Controls.Add(this.authorLabel, 1, 3);
+			this.tableLayoutPanel2.Controls.Add(this.soldStatusLabel, 1, 4);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(182, 10);
 			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 4;
+			this.tableLayoutPanel2.RowCount = 6;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(391, 132);
 			this.tableLayoutPanel2.TabIndex = 1;
 			// 
@@ -124,13 +132,13 @@ namespace Sale_of_motor_vehicles {
 			// descrtiptionLabel
 			// 
 			this.descrtiptionLabel.AutoEllipsis = true;
-			this.tableLayoutPanel2.SetColumnSpan(this.descrtiptionLabel, 2);
 			this.descrtiptionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.descrtiptionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.descrtiptionLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.descrtiptionLabel.Location = new System.Drawing.Point(3, 50);
 			this.descrtiptionLabel.Name = "descrtiptionLabel";
-			this.descrtiptionLabel.Size = new System.Drawing.Size(385, 82);
+			this.tableLayoutPanel2.SetRowSpan(this.descrtiptionLabel, 3);
+			this.descrtiptionLabel.Size = new System.Drawing.Size(294, 82);
 			this.descrtiptionLabel.TabIndex = 3;
 			this.descrtiptionLabel.Text = "descrtiption";
 			// 
@@ -156,11 +164,41 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.soldStatusLabel.AutoSize = true;
 			this.soldStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.soldStatusLabel.Location = new System.Drawing.Point(303, 35);
+			this.soldStatusLabel.Location = new System.Drawing.Point(303, 65);
 			this.soldStatusLabel.Name = "soldStatusLabel";
 			this.soldStatusLabel.Size = new System.Drawing.Size(82, 15);
 			this.soldStatusLabel.TabIndex = 5;
 			this.soldStatusLabel.Text = "characteristics";
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label3.Location = new System.Drawing.Point(303, 35);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(49, 15);
+			this.label3.TabIndex = 6;
+			this.label3.Text = "Создал:";
+			// 
+			// authorLabel
+			// 
+			this.authorLabel.AutoSize = true;
+			this.authorLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.authorLabel.Location = new System.Drawing.Point(303, 50);
+			this.authorLabel.Name = "authorLabel";
+			this.authorLabel.Size = new System.Drawing.Size(82, 15);
+			this.authorLabel.TabIndex = 7;
+			this.authorLabel.Text = "characteristics";
+			// 
+			// soldLabel
+			// 
+			this.soldLabel.AutoSize = true;
+			this.soldLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.soldLabel.Location = new System.Drawing.Point(303, 80);
+			this.soldLabel.Name = "soldLabel";
+			this.soldLabel.Size = new System.Drawing.Size(82, 15);
+			this.soldLabel.TabIndex = 8;
+			this.soldLabel.Text = "characteristics";
 			// 
 			// AutoControl
 			// 
@@ -189,5 +227,8 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.Label descrtiptionLabel;
 		private System.Windows.Forms.Button showButton;
 		private System.Windows.Forms.Label soldStatusLabel;
+		private System.Windows.Forms.Label soldLabel;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.Label authorLabel;
 	}
 }

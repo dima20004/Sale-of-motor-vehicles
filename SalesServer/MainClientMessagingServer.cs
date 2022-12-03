@@ -71,7 +71,7 @@ namespace SalesServer {
 					[Color], [OwnersCount],
 					[AquisitionDate], [Description],
 					[Owner], [Image], [SoldOutDate],
-					[SoldOutPrice]
+					[SoldOutPrice], [SoldOutOwner]
 				from [Auto].[Automobiles]
 				where " + chs.str, 
 				c
@@ -107,6 +107,7 @@ namespace SalesServer {
 				it.image = reader[16] is DBNull ? null : (byte[]) reader[16];
 				it.soldOutDate =  reader[17] is DBNull ? null : (DateTime?) (DateTime) reader[17];
 				it.soldOutPrice = (int) reader[18];
+				it.soldOutOwner = (int) reader[19];
 				autos.Add(it);
 			}
 			return autos;
@@ -206,14 +207,15 @@ namespace SalesServer {
 			}}
 		}
 
-		DateTime Messaging.buyAdvert(int id, int price) {
+		DateTime Messaging.buyAdvert(AccountData data, int id, int price) {
 			using(var c = conn) {
 			using(
 			var command = new SqlCommand(@"
 				update [Auto].[Automobiles]
 				set 
 					[SoldOutDate] = @Date,
-					[SoldOutPrice] = @Price
+					[SoldOutPrice] = @Price,
+					[SoldOutOwner] = @SoldOwnerId
 				where [Id] = @Id and [SoldOutDate] is null;
 				
 				select cast(case when @@rowcount = 0 then 0 else 1 end as bit);", 
@@ -224,9 +226,13 @@ namespace SalesServer {
 			command.Parameters.AddWithValue("@Id", id);
 			command.Parameters.AddWithValue("@Price", price);
 			command.Parameters.AddWithValue("@Date", date);
+			var owParam = command.Parameters.Add("@SoldOwnerId", System.Data.SqlDbType.Int);
 
 			var autos = new List<Auto>();
 			c.Open();
+			var ow = DBAccounts.loginAccountId(new ConnectionView(c, false), data);
+			if(ow == null) throw new Exception();
+			owParam.Value = ow;
 			using(
 			var reader = command.ExecuteReader()) {
 			reader.Read();
@@ -297,6 +303,28 @@ namespace SalesServer {
 				soldOutCount = soldOutCount,
 				soldOutPriceSum = soldOutPriceSum
 			};
+			}}}
+		}
+
+		AccountInfo Messaging.getAccountInfo(int id) {
+			using(var c = conn) {
+			using(
+			var command = new SqlCommand(@"
+				select top 1 [Name], [Surname]
+				from [Customers].[Accounts]
+				where [Id] = @Id", 
+				c
+			)) {
+			command.CommandType = System.Data.CommandType.Text;
+			var date = DateTime.UtcNow;
+			command.Parameters.AddWithValue("@Id", id);
+
+			var autos = new List<Auto>();
+			c.Open();
+			using(
+			var reader = command.ExecuteReader()) {
+			reader.Read();
+			return new AccountInfo{ name = (string) reader[0], surname = (string) reader[1] };
 			}}}
 		}
 	}

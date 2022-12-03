@@ -63,9 +63,10 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.deleteImageLabel = new System.Windows.Forms.Label();
+			this.soldStatusLabel = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.soldStatusLabel = new System.Windows.Forms.Label();
+			this.authorLabel = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -116,7 +117,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 1;
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(780, 33);
 			this.tableLayoutPanel5.TabIndex = 4;
 			// 
@@ -616,17 +617,20 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.tableLayoutPanel4.ColumnCount = 1;
 			this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel4.Controls.Add(this.pictureBox1, 0, 1);
-			this.tableLayoutPanel4.Controls.Add(this.deleteImageLabel, 0, 2);
-			this.tableLayoutPanel4.Controls.Add(this.soldStatusLabel, 0, 0);
+			this.tableLayoutPanel4.Controls.Add(this.authorLabel, 0, 0);
+			this.tableLayoutPanel4.Controls.Add(this.pictureBox1, 0, 2);
+			this.tableLayoutPanel4.Controls.Add(this.deleteImageLabel, 0, 3);
+			this.tableLayoutPanel4.Controls.Add(this.soldStatusLabel, 0, 1);
 			this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
 			this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-			this.tableLayoutPanel4.RowCount = 3;
+			this.tableLayoutPanel4.RowCount = 4;
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel4.Size = new System.Drawing.Size(195, 358);
 			this.tableLayoutPanel4.TabIndex = 3;
 			// 
@@ -634,10 +638,10 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pictureBox1.Location = new System.Drawing.Point(0, 18);
+			this.pictureBox1.Location = new System.Drawing.Point(0, 38);
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(195, 327);
+			this.pictureBox1.Size = new System.Drawing.Size(195, 307);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -655,6 +659,17 @@ namespace Sale_of_motor_vehicles {
 			this.deleteImageLabel.Text = "Удалить изображение";
 			this.deleteImageLabel.Click += new System.EventHandler(this.deleteImageLabel_Click);
 			// 
+			// soldStatusLabel
+			// 
+			this.soldStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.soldStatusLabel.AutoSize = true;
+			this.soldStatusLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.soldStatusLabel.Location = new System.Drawing.Point(3, 20);
+			this.soldStatusLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+			this.soldStatusLabel.Name = "soldStatusLabel";
+			this.soldStatusLabel.Size = new System.Drawing.Size(189, 13);
+			this.soldStatusLabel.TabIndex = 2;
+			// 
 			// label13
 			// 
 			this.label13.AutoSize = true;
@@ -669,16 +684,16 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
-			// soldStatusLabel
+			// authorLabel
 			// 
-			this.soldStatusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.soldStatusLabel.AutoSize = true;
-			this.soldStatusLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.soldStatusLabel.Location = new System.Drawing.Point(3, 0);
-			this.soldStatusLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
-			this.soldStatusLabel.Name = "soldStatusLabel";
-			this.soldStatusLabel.Size = new System.Drawing.Size(189, 13);
-			this.soldStatusLabel.TabIndex = 2;
+			this.authorLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.authorLabel.AutoSize = true;
+			this.authorLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.authorLabel.Location = new System.Drawing.Point(3, 1);
+			this.authorLabel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 5);
+			this.authorLabel.Name = "authorLabel";
+			this.authorLabel.Size = new System.Drawing.Size(189, 13);
+			this.authorLabel.TabIndex = 3;
 			// 
 			// AutoForm
 			// 
@@ -754,5 +769,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.Button deleteButton;
 		private System.Windows.Forms.Button sellButton;
 		private System.Windows.Forms.Label soldStatusLabel;
+		private System.Windows.Forms.Label authorLabel;
 	}
 }

@@ -103,7 +103,7 @@ namespace SalesServer {
 			AccountData account, string name, string surname,
 			ManagementRole role
 		) {
-			if(account.login.Length < 1 || account.pass.Length < 8
+			if(account.login.Length < 4 || account.pass.Length < 4
 				|| name.Length < 1 || surname.Length < 1
 			) return false;
 			using(connection) {

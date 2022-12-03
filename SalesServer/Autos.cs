@@ -24,6 +24,7 @@ namespace Autos {
 		public byte[] image;
 		public DateTime? soldOutDate;
 		public int soldOutPrice;
+		public int soldOutOwner;
 	}
 
 	public static class Names {

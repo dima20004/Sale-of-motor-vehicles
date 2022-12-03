@@ -13,6 +13,9 @@ namespace ClientMessaging {
 		public int discountSum;
 	}
 
+	[Serializable] public struct AccountInfo {
+		public string name, surname;
+	}
 
 	[ServiceContract]
 	public interface Messaging {
@@ -30,6 +33,8 @@ namespace ClientMessaging {
 
 		[OperationContract] void deleteAdvert(Accounts.AccountData data, int id);
 
-		[OperationContract] DateTime buyAdvert(int id, int price);
+		[OperationContract] DateTime buyAdvert(Accounts.AccountData date, int id, int price);
+
+		[OperationContract] AccountInfo getAccountInfo(int id);
 	}
 }
