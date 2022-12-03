@@ -38,7 +38,7 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void showButton_Click(object sender, EventArgs e) {
-			new AutoAddForm(context, auto, true).ShowDialog();
+			new AutoForm(context, auto, true).ShowDialog();
 		}
 	}
 }

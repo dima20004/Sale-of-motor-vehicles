@@ -122,11 +122,17 @@
     <Compile Include="..\SalesServer\Criteria.cs">
       <Link>Criteria.cs</Link>
     </Compile>
-    <Compile Include="AutoAddForm.cs">
+    <Compile Include="AnalysisForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AutoAddForm.Designer.cs">
-      <DependentUpon>AutoAddForm.cs</DependentUpon>
+    <Compile Include="AnalysisForm.Designer.cs">
+      <DependentUpon>AnalysisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoForm.Designer.cs">
+      <DependentUpon>AutoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AutoControl.cs">
       <SubType>UserControl</SubType>
@@ -171,8 +177,11 @@
     <Compile Include="ServerQuery.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AutoAddForm.resx">
-      <DependentUpon>AutoAddForm.cs</DependentUpon>
+    <EmbeddedResource Include="AnalysisForm.resx">
+      <DependentUpon>AnalysisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoForm.resx">
+      <DependentUpon>AutoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AutoControl.resx">
       <DependentUpon>AutoControl.cs</DependentUpon>

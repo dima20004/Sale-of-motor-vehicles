@@ -70,7 +70,8 @@ namespace SalesServer {
 					[SteeringWheel], [EnginePower], 
 					[Color], [OwnersCount],
 					[AquisitionDate], [Description],
-					[Owner], [Image]
+					[Owner], [Image], [SoldOutDate],
+					[SoldOutPrice]
 				from [Auto].[Automobiles]
 				where [SoldOutDate] is null and " + chs.str, 
 				c
@@ -104,6 +105,8 @@ namespace SalesServer {
 				it.description = (string) reader[14];
 				it.owner = reader.GetInt32(15);
 				it.image = reader[16] is DBNull ? null : (byte[]) reader[16];
+				it.soldOutDate =  reader[17] is DBNull ? null : (DateTime?) (DateTime) reader[17];
+				it.soldOutPrice = (int) reader[18];
 				autos.Add(it);
 			}
 			return autos;
@@ -123,13 +126,13 @@ namespace SalesServer {
 						[Color], [OwnersCount],
 						[AquisitionDate], [Description],
 						[Image]
-					) values (
+					) 
+					output [inserted].[Id]			
+					values (
 						@Price, @Owner, @Brand, @Model, @ManufYear, @Trans, 
 						@Type, @EngineType, @MileageKm, @SteeringWheel, @EnginePower, 
 						@Color, @OwnersCount, @AquisitionDate, @Description, @Image
 					);
-
-					select cast(scope_identity() as int)
 				end
 				else begin
 					update [Auto].[Automobiles]
@@ -150,7 +153,7 @@ namespace SalesServer {
 						[Description] = @Description,
 						[Image] = @Image
 					where [Id] = @Id and [SoldOutDate] is null
-						and [Owner] = @Owner
+						and [Owner] = @Owner;
 
 					select cast(case when @@rowcount = 0 then 0 else 1 end as bit); 
 				end", 
@@ -203,22 +206,24 @@ namespace SalesServer {
 			}}
 		}
 
-		void Messaging.buyAdvert(int id, int price) {
+		DateTime Messaging.buyAdvert(int id, int price) {
 			using(var c = conn) {
 			using(
 			var command = new SqlCommand(@"
 				update [Auto].[Automobiles]
 				set 
-					[SoldOutDate] = getdate(),
-					[Price] = @Price
+					[SoldOutDate] = @Date,
+					[SoldOutPrice] = @Price
 				where [Id] = @Id and [SoldOutDate] is null;
 				
 				select cast(case when @@rowcount = 0 then 0 else 1 end as bit);", 
 				c
 			)) {
 			command.CommandType = System.Data.CommandType.Text;
+			var date = DateTime.UtcNow;
 			command.Parameters.AddWithValue("@Id", id);
 			command.Parameters.AddWithValue("@Price", price);
+			command.Parameters.AddWithValue("@Date", date);
 
 			var autos = new List<Auto>();
 			c.Open();
@@ -226,6 +231,7 @@ namespace SalesServer {
 			var reader = command.ExecuteReader()) {
 			reader.Read();
 			if((bool) reader[0] == false) throw new Exception();
+			else return date;
 			}}}
 		}
 
@@ -253,6 +259,44 @@ namespace SalesServer {
 			using(var res = command.ExecuteReader()) {
 			res.Read();
 			if((bool) res[0] == false) throw new Exception();
+			}}}
+		}
+
+		Statistics Messaging.getStatistics() {
+			using(var c = conn) {
+			using(
+			var command = new SqlCommand(@"
+				select count(*)
+				from [Auto].[Automobiles] as [as];
+				
+				select 
+					count(*),
+					sum([as].[SoldOutPrice]),
+					sum([as].[Price]) - sum([as].[SoldOutPrice])
+				from [Auto].[Automobiles] as [as]
+				where [as].[SoldOutDate] is not null;", 
+				c
+			)) {
+			command.CommandType = System.Data.CommandType.Text;
+
+			var autos = new List<Auto>();
+			c.Open();
+			using(
+			var reader = command.ExecuteReader()) {
+			reader.Read();
+			var autosCount = reader[0] is DBNull ? 0 : (int) reader[0];
+			reader.NextResult();
+			reader.Read();
+			var soldOutCount = reader[0] is DBNull ? 0 : (int) reader[0];
+			var soldOutPriceSum = reader[1] is DBNull ? 0 : (int) reader[1];
+			var discount = reader[2] is DBNull ? 0 : (int) reader[2];
+
+			return new Statistics{ 
+				autosCount = autosCount,
+				discountSum = discount,
+				soldOutCount = soldOutCount,
+				soldOutPriceSum = soldOutPriceSum
+			};
 			}}}
 		}
 	}

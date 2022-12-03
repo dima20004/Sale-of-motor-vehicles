@@ -15,8 +15,6 @@ namespace Sale_of_motor_vehicles {
 		private Context context;
 		private Auto auto;
 
-		public int newPrice{ get; private set; }
-
 		public ChangePriceForm(Context context, Auto auto) {
 			this.context = context;
 			this.auto = auto;
@@ -31,7 +29,8 @@ namespace Sale_of_motor_vehicles {
 			var res = context.messaging.attempt((it) => it.buyAdvert(auto.id, np));
 
 			if(res) {
-				newPrice = np;
+				auto.soldOutDate = res.s;
+				auto.soldOutPrice = np;
 				DialogResult = DialogResult.OK;
 			}
 			else {

@@ -22,6 +22,8 @@ namespace Autos {
 		public DateTime aquisitionDate;
 		public string description;
 		public byte[] image;
+		public DateTime? soldOutDate;
+		public int soldOutPrice;
 	}
 
 	public static class Names {

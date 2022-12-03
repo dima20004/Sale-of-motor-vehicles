@@ -80,7 +80,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel2.Controls.Add(this.loginButton, 6, 1);
 			this.tableLayoutPanel2.Controls.Add(this.autosLabel, 4, 1);
-			this.tableLayoutPanel2.Controls.Add(this.panel1, 2, 2);
+			this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
 			this.tableLayoutPanel2.Controls.Add(this.label1, 1, 1);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -134,11 +134,11 @@ namespace Sale_of_motor_vehicles {
 			this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.tableLayoutPanel2.SetColumnSpan(this.panel1, 6);
-			this.panel1.Location = new System.Drawing.Point(228, 48);
+			this.tableLayoutPanel2.SetColumnSpan(this.panel1, 8);
+			this.panel1.Location = new System.Drawing.Point(0, 48);
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(804, 1);
+			this.panel1.Size = new System.Drawing.Size(1032, 1);
 			this.panel1.TabIndex = 2;
 			// 
 			// tableLayoutPanel3

@@ -6,9 +6,19 @@ using System.Text;
 
 namespace ClientMessaging {
 
+	[Serializable] public struct Statistics {
+		public int autosCount;
+		public int soldOutCount;
+		public int soldOutPriceSum;
+		public int discountSum;
+	}
+
+
 	[ServiceContract]
 	public interface Messaging {
 		[OperationContract] Criteria.CriteriaInfo getCriteria();
+
+		[OperationContract] Statistics getStatistics();
 
 		[OperationContract] bool register(Accounts.AccountData account, string name, string surname);
 
@@ -20,6 +30,6 @@ namespace ClientMessaging {
 
 		[OperationContract] void deleteAdvert(Accounts.AccountData data, int id);
 
-		[OperationContract] void buyAdvert(int id, int price);
+		[OperationContract] DateTime buyAdvert(int id, int price);
 	}
 }

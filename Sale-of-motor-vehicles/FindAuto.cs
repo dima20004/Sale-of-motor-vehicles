@@ -31,7 +31,7 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void acountLabel_Click(object sender, EventArgs e) {
-			if(context.customer.LoggedIn) new AutoAddForm(context, null, false).ShowDialog();
+			if(context.customer.LoggedIn) new AutoForm(context, null, false).ShowDialog();
 			else {
 				var result = new LoginForm(context).ShowDialog();
 				if(result == DialogResult.OK) updateLoginDisplay();
@@ -168,7 +168,7 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void label1_Click(object sender, EventArgs e) {
-
+			new AnalysisForm(context).ShowDialog();
 		}
 	}
 }

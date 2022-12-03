@@ -6,14 +6,16 @@ using System.Drawing;
 using System.Windows.Forms;
 
 namespace Sale_of_motor_vehicles {
-	public partial class AutoAddForm : Form {
+	public partial class AutoForm : Form {
 		private Context context;
 		private Auto auto; 
 		private bool viewing;
 
-		private bool canEdit{ get{ return auto?.owner == null || auto?.owner == context.customer.account?.id; } }
+		/*private bool canEdit{ get{ 
+			return auto == null || auto.owner == context.customer.account?.id; 
+		} }*/
 
-		public AutoAddForm(Context context, Auto auto, bool viewing) {
+		public AutoForm(Context context, Auto auto, bool viewing) {
 			this.context = context;
 			this.viewing = viewing;
 			this.auto = auto;
@@ -65,6 +67,8 @@ namespace Sale_of_motor_vehicles {
 		private void updateEditMode() {
 			var en = !viewing;
 			var br = viewing ? BorderStyle.None : BorderStyle.FixedSingle;
+
+			soldStatusLabel.Text = "Статус: " + (auto != null && auto.soldOutDate != null ? "продано" : "не продано");
 			
 			pictureBox1.Enabled = en;
 			brandCB.Enabled = en;
@@ -111,21 +115,20 @@ namespace Sale_of_motor_vehicles {
 			descriptionTextbox.BorderStyle = br;
 			deleteImageLabel.BorderStyle = br;
 
-			button3.Text = canEdit ? "Удалить" : "Купить";
-			button3.Visible = auto != null;
+			deleteButton.Visible = auto != null
+				&& auto.owner == context.customer.account?.id
+				&& auto.soldOutDate == null;
+			sellButton.Visible = auto != null && auto.soldOutDate == null;
 			
 			if(viewing) {
-				if(canEdit) {
-					button2.Visible = true;
-					button2.Text = "Выйти";
+				button2.Visible = true;
+				button2.Text = "Выйти";
 
+				if(auto != null && auto.owner == context.customer.account?.id && auto.soldOutDate == null) {
 					button1.Visible = true;
 					button1.Text = "Изменить";
 				}
 				else {
-					button2.Visible = true;
-					button2.Text = "Выйти";
-
 					button1.Visible = false;
 				}
 			}
@@ -172,6 +175,7 @@ namespace Sale_of_motor_vehicles {
 			}
 			else {
 				var val = new Auto();
+				try {
 				val.owner = context.customer.account.Value.id;
 				val.brand = ((KeyValuePair<int, object>) brandCB.SelectedItem).Key;
 				val.model = modelTB.Text;
@@ -188,10 +192,16 @@ namespace Sale_of_motor_vehicles {
 				val.description = descriptionTextbox.Text;
 				val.priceRub = (int) priceNUD.Value;
 				val.image = getImageBytes(pictureBox1.Image);
+				}
+				catch(Exception ex) {
+					statusLabel.ForeColor = System.Drawing.Color.Firebrick;
+					statusLabel.Text = ex.Message;
+					return;
+				}
 
 				if(auto == null) {
 					var result = context.messaging.attempt((it) => {
-						it.addAdvert(context.customer.accountData, val);
+						return it.addAdvert(context.customer.accountData, val);
 					});
 
 					if(result) {
@@ -199,6 +209,7 @@ namespace Sale_of_motor_vehicles {
 						statusLabel.Text = "Объявление добавлено";
 						
 						viewing = true;
+						val.id = result.s;
 						auto = val;
 
 						updateEditMode();
@@ -212,7 +223,7 @@ namespace Sale_of_motor_vehicles {
 					val.id = auto.id;
 
 					var result = context.messaging.attempt((it) => {
-						it.addAdvert(context.customer.accountData, val);
+						return it.addAdvert(context.customer.accountData, val);
 					});
 
 					if(result) {
@@ -220,6 +231,7 @@ namespace Sale_of_motor_vehicles {
 						statusLabel.Text = "Объявление изменено";
 						
 						viewing = true;
+						val.id = result.s;
 						auto = val;
 
 						updateEditMode();
@@ -242,46 +254,41 @@ namespace Sale_of_motor_vehicles {
 			}}
 		}
 		private void button1_Click(object sender, EventArgs e) {
-			if(viewing && canEdit) {
-				viewing = false;
-				updateEditMode();
-			}
-			else if(!viewing) {
-				viewing = true;
-				updateEditMode();
-			}
+			viewing = !viewing;
+			updateEditMode();
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			if(canEdit) {
-				if(auto == null) return;
+			if(auto == null) return;
 
-				var res = context.messaging.attempt((it) => it.deleteAdvert(context.customer.accountData, auto.id));
+			var res = context.messaging.attempt((it) => it.deleteAdvert(context.customer.accountData, auto.id));
 
-				if(res) {
-					statusLabel.ForeColor = System.Drawing.Color.Black;
-					statusLabel.Text = "Объявление удалено";
+			if(res) {
+				statusLabel.ForeColor = System.Drawing.Color.Black;
+				statusLabel.Text = "Объявление удалено";
 
-					auto = null;
-					viewing = true;
+				auto = null;
+				viewing = true;
 
-					updateEditMode();
-				}
-				else {
-					statusLabel.ForeColor = System.Drawing.Color.Firebrick;
-					statusLabel.Text = res.f.Message;
-				}
+				updateEditMode();
 			}
 			else {
-				var form = new ChangePriceForm(context, auto);
-				if(form.ShowDialog() == DialogResult.OK) {
-					statusLabel.ForeColor = System.Drawing.Color.Black;
-					statusLabel.Text = "Объявление  продано за " + form.newPrice + " руб.";
-				}
-				else {
-					statusLabel.ForeColor = System.Drawing.Color.Firebrick;
-					statusLabel.Text = "Продажа отменена";
-				}
+				statusLabel.ForeColor = System.Drawing.Color.Firebrick;
+				statusLabel.Text = res.f.Message;
+			}
+		}
+
+		private void button4_Click(object sender, EventArgs e) {
+			var form = new ChangePriceForm(context, auto);
+			if(form.ShowDialog() == DialogResult.OK) {
+				statusLabel.ForeColor = System.Drawing.Color.Black;
+				statusLabel.Text = "Объявление  продано за " + auto.soldOutPrice + " руб.";
+
+				updateEditMode();
+			}
+			else {
+				statusLabel.ForeColor = System.Drawing.Color.Firebrick;
+				statusLabel.Text = "Продажа отменена";
 			}
 		}
 	}
