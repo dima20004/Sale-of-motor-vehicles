@@ -24,6 +24,7 @@ namespace Sale_of_motor_vehicles {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
+			this.components = new System.ComponentModel.Container();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.loginButton = new System.Windows.Forms.Button();
@@ -38,6 +39,7 @@ namespace Sale_of_motor_vehicles {
 			this.criteriaTable = new System.Windows.Forms.TableLayoutPanel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.autosTable = new System.Windows.Forms.TableLayoutPanel();
+			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
@@ -319,5 +321,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.Button findButton;
 		private System.Windows.Forms.TableLayoutPanel criteriaTable;
 		private System.Windows.Forms.TableLayoutPanel autosTable;
+		private System.Windows.Forms.ToolTip toolTip1;
 	}
 }

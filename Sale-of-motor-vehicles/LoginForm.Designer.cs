@@ -104,6 +104,7 @@ namespace Sale_of_motor_vehicles {
 			this.passwordTextbox.Name = "passwordTextbox";
 			this.passwordTextbox.Size = new System.Drawing.Size(277, 25);
 			this.passwordTextbox.TabIndex = 3;
+			this.passwordTextbox.UseSystemPasswordChar = true;
 			// 
 			// tableLayoutPanel2
 			// 

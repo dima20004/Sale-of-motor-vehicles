@@ -40,7 +40,7 @@ namespace SalesServer {
 			using(
 			var command = new SqlCommand(
 				@"
-				select [Name], [Surname], [Role]
+				select [Name], [Surname], [Role], [as].[Id]
 				from (
 					select *
 					from [Customers].[Authorization]
@@ -64,7 +64,37 @@ namespace SalesServer {
 				name = (string) reader[0],
 				surname = (string) reader[1],
 				role = (ManagementRole) (int) reader[2],
+				id = (int) reader[3],
 			};
+			}}}
+		}
+
+		public static int? loginAccountId(ConnectionView connection, AccountData account) {
+			using(connection) { 
+			using(
+			var command = new SqlCommand(
+				@"
+				select [as].[Id]
+				from (
+					select *
+					from [Customers].[Authorization]
+					where [Login] = @Login and [Password] = @Password
+				) as [ad]
+
+				inner join [Customers].[Accounts] as [as]
+				on [ad].[Id] = [as].[Id];",
+				connection
+			)) {
+			command.CommandType = System.Data.CommandType.Text;
+			command.Parameters.AddWithValue("@Login", account.login);
+			command.Parameters.AddWithValue("@Password", account.pass);
+
+			connection.Open();
+			using(
+			var reader = command.ExecuteReader()) {
+
+			if(!reader.Read()) return null;
+			return (int) reader[0];
 			}}}
 		}
 

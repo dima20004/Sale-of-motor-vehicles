@@ -31,7 +31,11 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void acountLabel_Click(object sender, EventArgs e) {
-			new AutoAddForm(context).ShowDialog();
+			if(context.customer.LoggedIn) new AutoAddForm(context, null, false).ShowDialog();
+			else {
+				var result = new LoginForm(context).ShowDialog();
+				if(result == DialogResult.OK) updateLoginDisplay();
+			}
 		}
 
 		private void loginButton_Click(object sender, EventArgs e) {
@@ -119,12 +123,13 @@ namespace Sale_of_motor_vehicles {
 
 		private void findButton_Click(object sender, EventArgs e) {
 			var result = context.messaging.attempt((it) => it.findAdverts(critList.List));
-			if(result) {
-				autosTable.SuspendLayout();
-				autosTable.Controls.Clear();
-				autosTable.RowStyles.Clear();
-				autosTable.RowCount = 0;
 
+			autosTable.SuspendLayout();
+			autosTable.Controls.Clear();
+			autosTable.RowStyles.Clear();
+			autosTable.RowCount = 0;
+
+			if(result) {
 				var autos = result.s;
 
 				if(autos.Count == 0) {
@@ -144,10 +149,22 @@ namespace Sale_of_motor_vehicles {
 					};
 					autosTable.Controls.Add(cont, 0, autosTable.RowCount++);
 				}
-
-				autosTable.ResumeLayout(false);
-				autosTable.PerformLayout();
 			}
+			else {
+				var lab = new Label{ 
+					ForeColor = Color.Firebrick,
+					Text = "Ошибка", Font =  new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204),
+					TextAlign = ContentAlignment.TopCenter,
+					Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top,
+				};
+				autosTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+				autosTable.RowCount++;
+				autosTable.Controls.Add(lab);
+				toolTip1.SetToolTip(lab, result.f.Message);
+			}
+
+			autosTable.ResumeLayout(false);
+			autosTable.PerformLayout();
 		}
 	}
 }

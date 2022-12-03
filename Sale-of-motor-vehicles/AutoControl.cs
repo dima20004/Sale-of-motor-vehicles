@@ -21,13 +21,24 @@ namespace Sale_of_motor_vehicles {
 			NameLabel.Text = context.criteria.valueString(Criteria.CriteriumType.brand, auto.brand)
 				+ " " + auto.model;
 
-			//pictureBox1.Image = 
+			pictureBox1.Image = decodeImage(auto.image);
 
 			priceLabel.Text = auto.priceRub + "руб.";
 			characteristicsLabel.Text = auto.mileageKm + "км., " + auto.enginePower + "л.с., "
 				+ Autos.Names.typeName(auto.type) + ", " + Autos.Names.EngineTypeName(auto.engineType);
 
 			descrtiptionLabel.Text = auto.description;
+		}
+
+		private Image decodeImage(byte[] img) {
+			if(img == null) return null;
+			else using(var s = new System.IO.MemoryStream(auto.image, false)) {
+				return Image.FromStream(s);
+			}
+		}
+
+		private void showButton_Click(object sender, EventArgs e) {
+			new AutoAddForm(context, auto, true).ShowDialog();
 		}
 	}
 }

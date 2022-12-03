@@ -9,7 +9,11 @@ namespace Common {
 
 		private ServerQuery(string adress) : base(typeof(T)) {
 			var endpoint = new EndpointAddress(adress);
-			var binding = new NetTcpBinding();
+			var binding = new NetTcpBinding() {
+				MaxReceivedMessageSize = int.MaxValue,
+				MaxBufferPoolSize = int.MaxValue, 
+				MaxBufferSize = int.MaxValue 
+			};
 			factory = new ChannelFactory<T>(binding, endpoint);
 		}
 

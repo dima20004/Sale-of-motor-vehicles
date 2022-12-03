@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 
 namespace SalesServer {
 	class Program {
@@ -18,7 +19,7 @@ namespace SalesServer {
 					new MainClientMessagingServer()
 				);
 				clientHost = new ServiceHost(clientServer, new Uri[] { new Uri(adress) });
-				clientHost.AddServiceEndpoint(typeof(ClientMessaging.Messaging), new NetTcpBinding(), "client");
+				clientHost.AddServiceEndpoint(typeof(ClientMessaging.Messaging), new NetTcpBinding() { MaxReceivedMessageSize = int.MaxValue, MaxBufferPoolSize = int.MaxValue, MaxBufferSize = int.MaxValue }, "client");
 				clientHost.Opened += (a, b) => Console.WriteLine("Client server opened\n");
 				clientHost.Open();
 

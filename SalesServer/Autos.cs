@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 namespace Autos {
 	public class Auto {
 		public int id;
+		public int owner;
 		public int priceRub;
 		public int brand;
 		public string model;
@@ -20,6 +21,7 @@ namespace Autos {
 		public short ownersCount;
 		public DateTime aquisitionDate;
 		public string description;
+		public byte[] image;
 	}
 
 	public static class Names {

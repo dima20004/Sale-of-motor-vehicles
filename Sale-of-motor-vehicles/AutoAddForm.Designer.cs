@@ -26,7 +26,8 @@ namespace Sale_of_motor_vehicles {
 		private void InitializeComponent() {
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-			this.addButton = new System.Windows.Forms.Button();
+			this.button1 = new System.Windows.Forms.Button();
+			this.button2 = new System.Windows.Forms.Button();
 			this.statusLabel = new System.Windows.Forms.Label();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.descriptionTextbox = new System.Windows.Forms.TextBox();
@@ -95,10 +96,12 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.tableLayoutPanel5.AutoSize = true;
 			this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.tableLayoutPanel5.ColumnCount = 2;
+			this.tableLayoutPanel5.ColumnCount = 3;
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.tableLayoutPanel5.Controls.Add(this.addButton, 1, 0);
+			this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+			this.tableLayoutPanel5.Controls.Add(this.button1, 1, 0);
+			this.tableLayoutPanel5.Controls.Add(this.button2, 2, 0);
 			this.tableLayoutPanel5.Controls.Add(this.statusLabel, 0, 0);
 			this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 511);
@@ -106,29 +109,51 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 1;
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
 			this.tableLayoutPanel5.Size = new System.Drawing.Size(780, 33);
 			this.tableLayoutPanel5.TabIndex = 4;
 			// 
-			// addButton
+			// button1
 			// 
-			this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.addButton.AutoSize = true;
-			this.addButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.addButton.BackColor = System.Drawing.Color.SlateBlue;
-			this.addButton.FlatAppearance.BorderSize = 0;
-			this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.addButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.addButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.addButton.Location = new System.Drawing.Point(698, 0);
-			this.addButton.Margin = new System.Windows.Forms.Padding(0);
-			this.addButton.Name = "addButton";
-			this.addButton.Padding = new System.Windows.Forms.Padding(3);
-			this.addButton.Size = new System.Drawing.Size(82, 33);
-			this.addButton.TabIndex = 0;
-			this.addButton.Text = "Добавить";
-			this.addButton.UseVisualStyleBackColor = false;
-			this.addButton.Click += new System.EventHandler(this.addButton_Click);
+			this.button1.AutoSize = true;
+			this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.button1.BackColor = System.Drawing.Color.Transparent;
+			this.button1.FlatAppearance.BorderSize = 0;
+			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.button1.Location = new System.Drawing.Point(606, 0);
+			this.button1.Margin = new System.Windows.Forms.Padding(10, 0, 10, 0);
+			this.button1.Name = "button1";
+			this.button1.Padding = new System.Windows.Forms.Padding(3);
+			this.button1.Size = new System.Drawing.Size(82, 33);
+			this.button1.TabIndex = 2;
+			this.button1.Text = "Добавить";
+			this.button1.UseVisualStyleBackColor = false;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// button2
+			// 
+			this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.button2.AutoSize = true;
+			this.button2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.button2.BackColor = System.Drawing.Color.SlateBlue;
+			this.button2.FlatAppearance.BorderSize = 0;
+			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.button2.Location = new System.Drawing.Point(698, 0);
+			this.button2.Margin = new System.Windows.Forms.Padding(0);
+			this.button2.Name = "button2";
+			this.button2.Padding = new System.Windows.Forms.Padding(3);
+			this.button2.Size = new System.Drawing.Size(82, 33);
+			this.button2.TabIndex = 0;
+			this.button2.Text = "Добавить";
+			this.button2.UseVisualStyleBackColor = false;
+			this.button2.Click += new System.EventHandler(this.button2_Click);
 			// 
 			// statusLabel
 			// 
@@ -137,7 +162,7 @@ namespace Sale_of_motor_vehicles {
 			this.statusLabel.ForeColor = System.Drawing.Color.Black;
 			this.statusLabel.Location = new System.Drawing.Point(3, 0);
 			this.statusLabel.Name = "statusLabel";
-			this.statusLabel.Size = new System.Drawing.Size(692, 33);
+			this.statusLabel.Size = new System.Drawing.Size(590, 33);
 			this.statusLabel.TabIndex = 1;
 			// 
 			// tableLayoutPanel2
@@ -372,6 +397,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.brandCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.brandCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.brandCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.brandCB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.brandCB.FormattingEnabled = true;
 			this.brandCB.Location = new System.Drawing.Point(154, 3);
@@ -416,6 +442,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.transCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.transCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.transCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.transCB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.transCB.FormattingEnabled = true;
 			this.transCB.Location = new System.Drawing.Point(154, 86);
@@ -427,6 +454,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.typeCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.typeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.typeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.typeCB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.typeCB.FormattingEnabled = true;
 			this.typeCB.Location = new System.Drawing.Point(154, 113);
@@ -438,6 +466,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.engineTypeCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.engineTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.engineTypeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.engineTypeCB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.engineTypeCB.FormattingEnabled = true;
 			this.engineTypeCB.Location = new System.Drawing.Point(154, 140);
@@ -449,6 +478,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.stWheelCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.stWheelCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.stWheelCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.stWheelCB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.stWheelCB.FormattingEnabled = true;
 			this.stWheelCB.Location = new System.Drawing.Point(154, 195);
@@ -460,6 +490,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.colorCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.colorCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.colorCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.colorCB.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.colorCB.FormattingEnabled = true;
 			this.colorCB.Location = new System.Drawing.Point(154, 250);
@@ -620,7 +651,7 @@ namespace Sale_of_motor_vehicles {
 		#endregion
 
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private System.Windows.Forms.Button addButton;
+		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Label deleteImageLabel;
@@ -657,5 +688,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.NumericUpDown priceNUD;
+		private System.Windows.Forms.Button button1;
 	}
 }

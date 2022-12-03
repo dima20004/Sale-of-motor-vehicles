@@ -31,6 +31,7 @@ namespace Sale_of_motor_vehicles {
 			this.priceLabel = new System.Windows.Forms.Label();
 			this.characteristicsLabel = new System.Windows.Forms.Label();
 			this.descrtiptionLabel = new System.Windows.Forms.Label();
+			this.showButton = new System.Windows.Forms.Button();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -67,12 +68,14 @@ namespace Sale_of_motor_vehicles {
 			// 
 			// tableLayoutPanel2
 			// 
-			this.tableLayoutPanel2.ColumnCount = 1;
+			this.tableLayoutPanel2.ColumnCount = 2;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
 			this.tableLayoutPanel2.Controls.Add(this.NameLabel, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.priceLabel, 0, 1);
 			this.tableLayoutPanel2.Controls.Add(this.characteristicsLabel, 0, 2);
 			this.tableLayoutPanel2.Controls.Add(this.descrtiptionLabel, 0, 3);
+			this.tableLayoutPanel2.Controls.Add(this.showButton, 1, 0);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(182, 10);
 			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -108,6 +111,7 @@ namespace Sale_of_motor_vehicles {
 			// characteristicsLabel
 			// 
 			this.characteristicsLabel.AutoSize = true;
+			this.tableLayoutPanel2.SetColumnSpan(this.characteristicsLabel, 2);
 			this.characteristicsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.characteristicsLabel.Location = new System.Drawing.Point(3, 35);
 			this.characteristicsLabel.Name = "characteristicsLabel";
@@ -118,6 +122,7 @@ namespace Sale_of_motor_vehicles {
 			// descrtiptionLabel
 			// 
 			this.descrtiptionLabel.AutoEllipsis = true;
+			this.tableLayoutPanel2.SetColumnSpan(this.descrtiptionLabel, 2);
 			this.descrtiptionLabel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.descrtiptionLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.descrtiptionLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -126,6 +131,24 @@ namespace Sale_of_motor_vehicles {
 			this.descrtiptionLabel.Size = new System.Drawing.Size(385, 82);
 			this.descrtiptionLabel.TabIndex = 3;
 			this.descrtiptionLabel.Text = "descrtiption";
+			// 
+			// showButton
+			// 
+			this.showButton.AutoSize = true;
+			this.showButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.showButton.BackColor = System.Drawing.Color.SlateBlue;
+			this.showButton.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.showButton.FlatAppearance.BorderSize = 0;
+			this.showButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.showButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+			this.showButton.Location = new System.Drawing.Point(303, 3);
+			this.showButton.Name = "showButton";
+			this.tableLayoutPanel2.SetRowSpan(this.showButton, 2);
+			this.showButton.Size = new System.Drawing.Size(85, 29);
+			this.showButton.TabIndex = 4;
+			this.showButton.Text = "Просмотреть";
+			this.showButton.UseVisualStyleBackColor = false;
+			this.showButton.Click += new System.EventHandler(this.showButton_Click);
 			// 
 			// AutoControl
 			// 
@@ -152,5 +175,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.Label priceLabel;
 		private System.Windows.Forms.Label characteristicsLabel;
 		private System.Windows.Forms.Label descrtiptionLabel;
+		private System.Windows.Forms.Button showButton;
 	}
 }

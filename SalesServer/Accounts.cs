@@ -14,6 +14,7 @@ namespace Accounts {
 	}
 
 	[Serializable] public struct Account {
+		public int id;
 		public string name, surname;
 		public ManagementRole role;
 	}
