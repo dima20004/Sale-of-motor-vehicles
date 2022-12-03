@@ -75,7 +75,7 @@ namespace Sale_of_motor_vehicles {
 				c1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				c1.TextAlign = ContentAlignment.MiddleLeft;
 
-				criteriaTable.Controls.Add(c1, 0, i);
+				criteriaTable.Controls.Add(c1, 1, i);
 
 				var c2 = new Label();
 				c2.AutoSize = true;
@@ -84,7 +84,7 @@ namespace Sale_of_motor_vehicles {
 				c2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 				c2.TextAlign = ContentAlignment.MiddleLeft;
 
-				criteriaTable.Controls.Add(c2, 1, i);
+				criteriaTable.Controls.Add(c2, 2, i);
 
 				var c3 = new Label();
 				c3.AutoSize = true;
@@ -96,7 +96,7 @@ namespace Sale_of_motor_vehicles {
 				var j = i;
 				c3.Click += (a, b) => { critList.List.RemoveAt(j); updateCritListDisplay(); };
 
-				criteriaTable.Controls.Add(c3, 3, i);
+				criteriaTable.Controls.Add(c3, 0, i);
 			}
 
 			criteriaTable.RowStyles.Add(new RowStyle(SizeType.Percent, 1));

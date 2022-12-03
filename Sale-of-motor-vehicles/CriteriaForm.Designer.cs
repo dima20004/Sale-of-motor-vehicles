@@ -54,7 +54,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(263, 107);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(344, 152);
 			this.tableLayoutPanel1.TabIndex = 0;
 			// 
 			// label1
@@ -94,7 +94,7 @@ namespace Sale_of_motor_vehicles {
 			this.addCriteriaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.addCriteriaButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.addCriteriaButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.addCriteriaButton.Location = new System.Drawing.Point(164, 71);
+			this.addCriteriaButton.Location = new System.Drawing.Point(245, 102);
 			this.addCriteriaButton.Name = "addCriteriaButton";
 			this.addCriteriaButton.Size = new System.Drawing.Size(76, 27);
 			this.addCriteriaButton.TabIndex = 2;
@@ -114,7 +114,7 @@ namespace Sale_of_motor_vehicles {
 			this.criteriaTable.Name = "criteriaTable";
 			this.criteriaTable.RowCount = 1;
 			this.criteriaTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.criteriaTable.Size = new System.Drawing.Size(149, 0);
+			this.criteriaTable.Size = new System.Drawing.Size(230, 0);
 			this.criteriaTable.TabIndex = 3;
 			// 
 			// criteriaTypeCombobox
@@ -126,7 +126,7 @@ namespace Sale_of_motor_vehicles {
 			this.criteriaTypeCombobox.FormattingEnabled = true;
 			this.criteriaTypeCombobox.Location = new System.Drawing.Point(97, 23);
 			this.criteriaTypeCombobox.Name = "criteriaTypeCombobox";
-			this.criteriaTypeCombobox.Size = new System.Drawing.Size(143, 25);
+			this.criteriaTypeCombobox.Size = new System.Drawing.Size(224, 25);
 			this.criteriaTypeCombobox.TabIndex = 4;
 			this.criteriaTypeCombobox.SelectedIndexChanged += new System.EventHandler(this.criteriaTypeCombobox_SelectedIndexChanged);
 			// 
@@ -134,9 +134,7 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.AutoSize = true;
-			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.ClientSize = new System.Drawing.Size(263, 107);
+			this.ClientSize = new System.Drawing.Size(344, 152);
 			this.Controls.Add(this.tableLayoutPanel1);
 			this.Name = "CriteriaForm";
 			this.Text = "Добавение критерия";

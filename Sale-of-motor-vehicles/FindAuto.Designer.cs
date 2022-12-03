@@ -238,12 +238,10 @@ namespace Sale_of_motor_vehicles {
 			// 
 			// criteriaTable
 			// 
-			this.criteriaTable.ColumnCount = 4;
+			this.criteriaTable.ColumnCount = 3;
 			this.criteriaTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.criteriaTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.criteriaTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.criteriaTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-			this.criteriaTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.criteriaTable.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.criteriaTable.Location = new System.Drawing.Point(0, 0);
 			this.criteriaTable.Margin = new System.Windows.Forms.Padding(0);
@@ -266,6 +264,8 @@ namespace Sale_of_motor_vehicles {
 			// autosTable
 			// 
 			this.autosTable.AutoScroll = true;
+			this.autosTable.AutoSize = true;
+			this.autosTable.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.autosTable.BackColor = System.Drawing.Color.WhiteSmoke;
 			this.autosTable.ColumnCount = 1;
 			this.autosTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -293,6 +293,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
 			this.tableLayoutPanel3.ResumeLayout(false);
+			this.tableLayoutPanel3.PerformLayout();
 			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel6.ResumeLayout(false);
 			this.tableLayoutPanel6.PerformLayout();

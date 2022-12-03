@@ -14,9 +14,29 @@ namespace SalesServer {
 			return new SqlConnection(Properties.Settings1.Default.connectionString); 
 		} }
 
+		private Criteria.CriteriaInfo criteriaInfo;
+
 		public MainClientMessagingServer() {
 			//test connection
 			using(var connection = new SqlConnection(Properties.Settings1.Default.connectionString)) {}
+
+			using(var c = conn) {
+			using(
+			var command = new SqlCommand(@"select [Id], [Name] from [Auto].[Brands];", c)) {
+			command.CommandType = System.Data.CommandType.Text;
+
+			var brands = new Dictionary<int, object>();
+
+			c.Open();
+			using(
+			var reader = command.ExecuteReader()) {
+			while(reader.Read()) brands.Add(reader.GetInt32(0), reader.GetString(1));
+			reader.Close();
+			command.Dispose();
+			c.Dispose();
+
+			criteriaInfo = new Criteria.CriteriaInfo(brands);
+			}}}
 		}
 
 		Accounts.Account? Messaging.login(Accounts.AccountData account) {
@@ -30,28 +50,15 @@ namespace SalesServer {
 		}
 
 		Criteria.CriteriaInfo Messaging.getCriteria() {
-			using(var c = conn) {
-			using(
-			var command = new SqlCommand(@"select [Id], [Name] from [Auto].[Brands]", c)) {
-			command.CommandType = System.Data.CommandType.Text;
-
-			var brands = new Dictionary<int, object>();
-
-			c.Open();
-			using(
-			var reader = command.ExecuteReader()) {
-			while(reader.Read()) brands.Add(reader.GetInt32(0), reader.GetString(1));
-			reader.Close();
-			command.Dispose();
-			c.Dispose();
-
-			return new Criteria.CriteriaInfo(brands);
-			}}
-			}
+			return criteriaInfo;
 		}
 
 		List<Auto> Messaging.findAdverts(List<Criterium> crits) {
+			for(int i = 0; i < crits.Count; i++) 
+				criteriaInfo.checkValueCorrect(crits[i].type, crits[i].value);
+
 			using(var c = conn) {
+			var chs = DBCriteria.makeCheckString(crits, "[Auto].[Automobiles]", "@Param");
 			using(
 			var command = new SqlCommand(@"
 				select
@@ -60,12 +67,15 @@ namespace SalesServer {
 					[EngineType], [MileageKm],    
 					[SteeringWheel], [EnginePower], 
 					[Color], [OwnersCount],
-					[AquisititionDate], [Description]    
+					[AquisitionDate], [Description]    
 				from [Auto].[Automobiles]
-				where " + DBCriteria.makeCheckString(crits, "[Auto].[Automobiles]"), 
+				where " + chs.str, 
 				c
 			)) {
 			command.CommandType = System.Data.CommandType.Text;
+			for(int i = 0; i < chs.parameters.Count; i++) {
+				command.Parameters.AddWithValue("@Param"+i, chs.parameters[i]);
+			}
 
 			var autos = new List<Auto>();
 			c.Open();
@@ -104,11 +114,11 @@ namespace SalesServer {
 					[EngineType], [MileageKm],    
 					[SteeringWheel], [EnginePower],  
 					[Color], [OwnersCount],
-					[AquisititionDate], [Description]    
+					[AquisitionDate], [Description]    
 				) values (
 					@Price, @Brand, @Model, @ManufYear, @Trans, 
 					@Type, @EngineType, @MileageKm, @SteeringWheel, @EnginePower, 
-					@Color, @OwnersCount, @AquisititionDate, @Description
+					@Color, @OwnersCount, @AquisitionDate, @Description
 				);
 				
 				select cast(scope_identity() as int)", 
@@ -127,7 +137,7 @@ namespace SalesServer {
 			command.Parameters.AddWithValue("@EnginePower", auto.enginePower);
 			command.Parameters.AddWithValue("@Color", auto.color);
 			command.Parameters.AddWithValue("@OwnersCount", auto.ownersCount);
-			command.Parameters.AddWithValue("@AquisititionDate", auto.aquisitionDate);
+			command.Parameters.AddWithValue("@AquisitionDate", auto.aquisitionDate);
 			command.Parameters.AddWithValue("@Description", auto.description);
 
 

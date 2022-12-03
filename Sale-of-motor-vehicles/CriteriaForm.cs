@@ -57,33 +57,86 @@ namespace Sale_of_motor_vehicles {
 
 		private void criteriaTypeCombobox_SelectedIndexChanged(object sender, System.EventArgs e) {
 			var type = (Criteria.CriteriumType) System.Enum.GetValues(typeof(Criteria.CriteriumType)).GetValue(criteriaTypeCombobox.SelectedIndex);
+			
+			value = null;
 
-			System.Diagnostics.Debug.Assert(System.Enum.GetValues(typeof(ValueType)).Length == 2);
+			System.Diagnostics.Debug.Assert(System.Enum.GetValues(typeof(ValueType)).Length == 6);
 			Control control;
 			switch(context.criteria.valueType(type)) {
 				case ValueType.amountRub: {
 					var c = new NumericUpDown();
-					c.ValueChanged += (a, b) => { value = (int) c.Value; };
 					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
 					c.Minimum = 0;
 					c.Maximum = int.MaxValue;
 					c.Value = 1;
 
+					c.ValueChanged += (a, b) => { value = (int) c.Value; };
+					value = (int) c.Value;
+
 					control = c;
 				} break;
 				case ValueType.collection: {
 					var c = new ComboBox();
-					c.SelectedIndexChanged += (a, b) => { value = ((KeyValuePair<int, object>) c.SelectedItem).Key; };
 					c.DropDownStyle = ComboBoxStyle.DropDownList;
 					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
 					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-					c.DataSource = new BindingSource{ DataSource = context.criteria.values(type) };
+					//https://stackoverflow.com/a/36053487/18704284
+					c.BindingContext = this.BindingContext;
+					c.DataSource = new BindingSource{ DataSource = context.criteria.valuesNames(type) };
 					c.DisplayMember = "Value";
 
+					c.SelectedIndex = 0;
+					c.SelectedIndexChanged += (a, b) => { value = ((KeyValuePair<int, string>) c.SelectedItem).Key; };
+					value = ((KeyValuePair<int, string>) c.SelectedItem).Key;
+
 					control = c;
-				}
-				break;
+				} break;
+				case ValueType.str: {
+					var c = new TextBox();
+					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+					c.TextChanged += (a, b) => { value = c.Text; };
+					value = c.Text;
+
+					control = c;
+				} break;
+				case ValueType.year: {
+					var c = new NumericUpDown();
+					c.Minimum = 1900;
+					c.Maximum = 3000;
+					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+					c.ValueChanged += (a, b) => { value = (int) c.Value; };
+					value = (int) c.Value;
+
+					control = c;
+				} break;
+				case ValueType.date: {
+					var c = new DateTimePicker();
+					c.Format = DateTimePickerFormat.Short;
+					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+					c.ValueChanged += (a, b) => { value = c.Value; };
+					value = c.Value;
+
+					control = c;
+				} break;
+				case ValueType.count: {
+					var c = new NumericUpDown();
+					c.Minimum = 0;
+					c.Maximum = 999999;
+					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+
+					c.ValueChanged += (a, b) => { value = (int) c.Value; };
+					value = (int) c.Value;
+
+					control = c;
+				} break;
 				default: throw new System.InvalidOperationException(); break;
 			}
 

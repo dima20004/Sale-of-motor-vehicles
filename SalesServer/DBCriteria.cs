@@ -7,20 +7,47 @@ using System.Threading.Tasks;
 
 namespace SalesServer {
 	static class DBCriteria {
-		private static string dbCheck(Criterium crit, string tableName) {
-			System.Diagnostics.Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 3);
+		private static string dbCheck(CriteriumType crit, string tableName, string paramName) {
+			System.Diagnostics.Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
 
-			switch(crit.type) {
-				case CriteriumType.priceFrom: return tableName + ".[Price] >= " + crit.value;
-				case CriteriumType.priceTo	: return tableName + ".[Price] <= " + crit.value;
-				case CriteriumType.brand	: return tableName + ".[Brand] = " + crit.value;
+			var tn = tableName;
+			var pn = paramName;
+
+			switch(crit) {
+				case CriteriumType.priceFrom:			return tn + ".[Price]>=" + pn;
+				case CriteriumType.priceTo:				return tn + ".[Price]<=" + pn;
+				case CriteriumType.brand:				return tn + ".[Brand]=" + pn;
+				case CriteriumType.model:				return "lower(" + tn + ".[Model]) like lower(" + pn + ")";
+				case CriteriumType.manufYearFrom:		return tn + ".[ManufYear]>=" + pn;
+				case CriteriumType.manufYearTo:			return tn + ".[ManufYear]<=" + pn;
+				case CriteriumType.trans:				return tn + ".[Trans]=" + pn;
+				case CriteriumType.type:				return tn + ".[Type]=" + pn;
+				case CriteriumType.engineType:			return tn + ".[EngineType]=" + pn;
+				case CriteriumType.mileageFrom:			return tn + ".[MileageKm]>=" + pn;
+				case CriteriumType.mileageTo:			return tn + ".[MileageKm]<=" + pn;
+				case CriteriumType.stWheel:				return tn + ".[SteeringWheel]=" + pn;
+				case CriteriumType.enginePowerFrom:		return tn + ".[EnginePower]>=" + pn;
+				case CriteriumType.enginePowerTo:		return tn + ".[EnginePower]<=" + pn;
+				case CriteriumType.color:				return tn + ".[Color]=" + pn;
+				case CriteriumType.ownersCountFrom:		return tn + ".[OwnersCount]>=" + pn;
+				case CriteriumType.ownersCountTo:		return tn + ".[OwnersCount]<=" + pn;
+				case CriteriumType.aquisitionDateFrom:	return tn + ".[AquisitionDate]>=" + pn;
+				case CriteriumType.aquisitionDateTo:	return tn + ".[AquisitionDate]" + pn;
 				default: throw new NotSupportedException();
 			}
 		}
 
-		public static string makeCheckString(List<Criterium> crits, string tableName) {
-			if(crits.Count == 0) return "(null is null)";
+		public struct CheckString {
+			public string str;
+			public List<object> parameters;
+		}
 
+		public static CheckString makeCheckString(List<Criterium> criteriumList, string tableName, string paramName) {
+			if(criteriumList.Count == 0) return new CheckString{ str ="(null is null)", parameters = new List<object>(0) };
+
+			var parameters = new List<object>(criteriumList.Count);
+
+			var crits = new List<Criterium>(criteriumList);
 			crits.Sort((f, s) => { 
 				if(f.type == s.type) return 0;
 				var fi = CriteriaInfo.importance(f.type);
@@ -40,12 +67,15 @@ namespace SalesServer {
 				if(it.type == prevType) result.Append("or");
 				else result.Append(")and(");
 
-				result.Append('(').Append(dbCheck(it, tableName)).Append(')');
+				prevType = it.type;
+
+				result.Append('(').Append(dbCheck(it.type, tableName, paramName + i)).Append(')');
+				parameters.Add(it.value);
 			}
 
 			result.Append("))");
 
-			return result.ToString();
+			return new CheckString{ str = result.ToString(), parameters = parameters };
 		}
 	}
 }

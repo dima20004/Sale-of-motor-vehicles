@@ -31,6 +31,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.descriptionTextbox = new System.Windows.Forms.TextBox();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+			this.label14 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
@@ -55,13 +56,12 @@ namespace Sale_of_motor_vehicles {
 			this.ownersCountNUD = new System.Windows.Forms.NumericUpDown();
 			this.enginePowerNUD = new System.Windows.Forms.NumericUpDown();
 			this.mileageNUD = new System.Windows.Forms.NumericUpDown();
+			this.priceNUD = new System.Windows.Forms.NumericUpDown();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.deleteImageLabel = new System.Windows.Forms.Label();
 			this.label13 = new System.Windows.Forms.Label();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-			this.label14 = new System.Windows.Forms.Label();
-			this.priceNUD = new System.Windows.Forms.NumericUpDown();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel5.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -70,9 +70,9 @@ namespace Sale_of_motor_vehicles {
 			((System.ComponentModel.ISupportInitialize)(this.ownersCountNUD)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.enginePowerNUD)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.mileageNUD)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.priceNUD)).BeginInit();
 			this.tableLayoutPanel4.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.priceNUD)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -224,6 +224,17 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel3.Size = new System.Drawing.Size(580, 358);
 			this.tableLayoutPanel3.TabIndex = 2;
+			// 
+			// label14
+			// 
+			this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.label14.AutoSize = true;
+			this.label14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.label14.Location = new System.Drawing.Point(3, 337);
+			this.label14.Name = "label14";
+			this.label14.Size = new System.Drawing.Size(145, 13);
+			this.label14.TabIndex = 24;
+			this.label14.Text = "Цена(руб.):";
 			// 
 			// label1
 			// 
@@ -470,6 +481,11 @@ namespace Sale_of_motor_vehicles {
 			this.ownersCountNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.ownersCountNUD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.ownersCountNUD.Location = new System.Drawing.Point(154, 277);
+			this.ownersCountNUD.Maximum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
 			this.ownersCountNUD.Name = "ownersCountNUD";
 			this.ownersCountNUD.Size = new System.Drawing.Size(423, 22);
 			this.ownersCountNUD.TabIndex = 21;
@@ -479,6 +495,11 @@ namespace Sale_of_motor_vehicles {
 			this.enginePowerNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.enginePowerNUD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.enginePowerNUD.Location = new System.Drawing.Point(154, 222);
+			this.enginePowerNUD.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
 			this.enginePowerNUD.Name = "enginePowerNUD";
 			this.enginePowerNUD.Size = new System.Drawing.Size(423, 22);
 			this.enginePowerNUD.TabIndex = 22;
@@ -488,9 +509,28 @@ namespace Sale_of_motor_vehicles {
 			this.mileageNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
 			this.mileageNUD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.mileageNUD.Location = new System.Drawing.Point(154, 167);
+			this.mileageNUD.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
 			this.mileageNUD.Name = "mileageNUD";
 			this.mileageNUD.Size = new System.Drawing.Size(423, 22);
 			this.mileageNUD.TabIndex = 23;
+			// 
+			// priceNUD
+			// 
+			this.priceNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.priceNUD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.priceNUD.Location = new System.Drawing.Point(154, 333);
+			this.priceNUD.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+			this.priceNUD.Name = "priceNUD";
+			this.priceNUD.Size = new System.Drawing.Size(423, 22);
+			this.priceNUD.TabIndex = 25;
 			// 
 			// tableLayoutPanel4
 			// 
@@ -547,26 +587,6 @@ namespace Sale_of_motor_vehicles {
 			// 
 			this.openFileDialog1.FileName = "openFileDialog1";
 			// 
-			// label14
-			// 
-			this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.label14.AutoSize = true;
-			this.label14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.label14.Location = new System.Drawing.Point(3, 337);
-			this.label14.Name = "label14";
-			this.label14.Size = new System.Drawing.Size(145, 13);
-			this.label14.TabIndex = 24;
-			this.label14.Text = "Цена(руб.):";
-			// 
-			// priceNUD
-			// 
-			this.priceNUD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-			this.priceNUD.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.priceNUD.Location = new System.Drawing.Point(154, 333);
-			this.priceNUD.Name = "priceNUD";
-			this.priceNUD.Size = new System.Drawing.Size(423, 22);
-			this.priceNUD.TabIndex = 25;
-			// 
 			// AutoAddForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -589,10 +609,10 @@ namespace Sale_of_motor_vehicles {
 			((System.ComponentModel.ISupportInitialize)(this.ownersCountNUD)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.enginePowerNUD)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.mileageNUD)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.priceNUD)).EndInit();
 			this.tableLayoutPanel4.ResumeLayout(false);
 			this.tableLayoutPanel4.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.priceNUD)).EndInit();
 			this.ResumeLayout(false);
 
 		}
