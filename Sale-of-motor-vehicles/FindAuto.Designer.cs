@@ -40,6 +40,7 @@ namespace Sale_of_motor_vehicles {
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.autosTable = new System.Windows.Forms.TableLayoutPanel();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.label1 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
@@ -68,16 +69,19 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2.AutoSize = true;
 			this.tableLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
-			this.tableLayoutPanel2.ColumnCount = 6;
+			this.tableLayoutPanel2.ColumnCount = 8;
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 208F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel2.Controls.Add(this.loginButton, 4, 1);
-			this.tableLayoutPanel2.Controls.Add(this.autosLabel, 2, 1);
-			this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
+			this.tableLayoutPanel2.Controls.Add(this.loginButton, 6, 1);
+			this.tableLayoutPanel2.Controls.Add(this.autosLabel, 4, 1);
+			this.tableLayoutPanel2.Controls.Add(this.panel1, 2, 2);
+			this.tableLayoutPanel2.Controls.Add(this.label1, 1, 1);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -131,10 +135,10 @@ namespace Sale_of_motor_vehicles {
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tableLayoutPanel2.SetColumnSpan(this.panel1, 6);
-			this.panel1.Location = new System.Drawing.Point(0, 48);
+			this.panel1.Location = new System.Drawing.Point(228, 48);
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1032, 1);
+			this.panel1.Size = new System.Drawing.Size(804, 1);
 			this.panel1.TabIndex = 2;
 			// 
 			// tableLayoutPanel3
@@ -281,6 +285,21 @@ namespace Sale_of_motor_vehicles {
 			this.autosTable.Size = new System.Drawing.Size(825, 507);
 			this.autosTable.TabIndex = 2;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(20, 10);
+			this.label1.Margin = new System.Windows.Forms.Padding(0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(208, 29);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Бизнес-анализ";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.label1.UseMnemonic = false;
+			this.label1.Click += new System.EventHandler(this.label1_Click);
+			// 
 			// FindAuto
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,5 +341,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.TableLayoutPanel criteriaTable;
 		private System.Windows.Forms.TableLayoutPanel autosTable;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.Label label1;
 	}
 }

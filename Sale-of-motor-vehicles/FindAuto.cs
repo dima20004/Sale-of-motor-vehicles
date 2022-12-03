@@ -166,5 +166,9 @@ namespace Sale_of_motor_vehicles {
 			autosTable.ResumeLayout(false);
 			autosTable.PerformLayout();
 		}
+
+		private void label1_Click(object sender, EventArgs e) {
+
+		}
 	}
 }

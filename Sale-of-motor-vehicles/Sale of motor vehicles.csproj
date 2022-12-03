@@ -134,6 +134,12 @@
     <Compile Include="AutoControl.Designer.cs">
       <DependentUpon>AutoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangePriceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePriceForm.Designer.cs">
+      <DependentUpon>ChangePriceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClientServerQuery.cs" />
     <Compile Include="CriteriaForm.cs">
       <SubType>Form</SubType>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AutoControl.resx">
       <DependentUpon>AutoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePriceForm.resx">
+      <DependentUpon>ChangePriceForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CriteriaForm.resx">
       <DependentUpon>CriteriaForm.cs</DependentUpon>

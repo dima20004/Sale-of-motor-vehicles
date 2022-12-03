@@ -253,22 +253,35 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void button3_Click(object sender, EventArgs e) {
-			if(auto == null) return;
+			if(canEdit) {
+				if(auto == null) return;
 
-			var res = context.messaging.attempt((it) => it.deleteAdvert(context.customer.accountData, auto.id));
+				var res = context.messaging.attempt((it) => it.deleteAdvert(context.customer.accountData, auto.id));
 
-			if(res) {
-				statusLabel.ForeColor = System.Drawing.Color.Black;
-				statusLabel.Text = "Объявление удалено";
+				if(res) {
+					statusLabel.ForeColor = System.Drawing.Color.Black;
+					statusLabel.Text = "Объявление удалено";
 
-				auto = null;
-				viewing = true;
+					auto = null;
+					viewing = true;
 
-				updateEditMode();
+					updateEditMode();
+				}
+				else {
+					statusLabel.ForeColor = System.Drawing.Color.Firebrick;
+					statusLabel.Text = res.f.Message;
+				}
 			}
 			else {
-				statusLabel.ForeColor = System.Drawing.Color.Firebrick;
-				statusLabel.Text = res.f.Message;
+				var form = new ChangePriceForm(context, auto);
+				if(form.ShowDialog() == DialogResult.OK) {
+					statusLabel.ForeColor = System.Drawing.Color.Black;
+					statusLabel.Text = "Объявление  продано за " + form.newPrice + " руб.";
+				}
+				else {
+					statusLabel.ForeColor = System.Drawing.Color.Firebrick;
+					statusLabel.Text = "Продажа отменена";
+				}
 			}
 		}
 	}

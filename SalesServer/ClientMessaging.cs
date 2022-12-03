@@ -20,6 +20,6 @@ namespace ClientMessaging {
 
 		[OperationContract] void deleteAdvert(Accounts.AccountData data, int id);
 
-		[OperationContract] void buyAdvert(Autos.Auto auto);
+		[OperationContract] void buyAdvert(int id, int price);
 	}
 }

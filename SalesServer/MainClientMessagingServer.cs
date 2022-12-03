@@ -203,19 +203,22 @@ namespace SalesServer {
 			}}
 		}
 
-		void Messaging.buyAdvert(Auto auto) {
+		void Messaging.buyAdvert(int id, int price) {
 			using(var c = conn) {
 			using(
 			var command = new SqlCommand(@"
 				update [Auto].[Automobiles]
-				set [SoldOutDate] = getdate()
+				set 
+					[SoldOutDate] = getdate(),
+					[Price] = @Price
 				where [Id] = @Id and [SoldOutDate] is null;
 				
 				select cast(case when @@rowcount = 0 then 0 else 1 end as bit);", 
 				c
 			)) {
 			command.CommandType = System.Data.CommandType.Text;
-			command.Parameters.AddWithValue("@Id", auto.id);
+			command.Parameters.AddWithValue("@Id", id);
+			command.Parameters.AddWithValue("@Price", price);
 
 			var autos = new List<Auto>();
 			c.Open();
