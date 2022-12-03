@@ -19,11 +19,12 @@ namespace Criteria {
 		color,
 		ownersCountFrom, ownersCountTo,
 		aquisitionDateFrom, aquisitionDateTo,
+		showSoldOut
 	}
 
 	public enum ValueType {
 		amountRub, collection, str,
-		year, date, count, 
+		year, date, count, boolean
 	}
 
 	[Serializable] public sealed class Criterium { 
@@ -42,12 +43,12 @@ namespace Criteria {
 		public CriteriaInfo(
 			Dictionary<int, object> brandValues
 		) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			this.brandValues = brandValues;
 		}
 
 		public ValueType valueType(CriteriumType type) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			switch(type) {
 				case CriteriumType.priceFrom:			return ValueType.amountRub;
 				case CriteriumType.priceTo:				return ValueType.amountRub;
@@ -68,15 +69,16 @@ namespace Criteria {
 				case CriteriumType.ownersCountTo:		return ValueType.count;
 				case CriteriumType.aquisitionDateFrom:	return ValueType.date;
 				case CriteriumType.aquisitionDateTo:	return ValueType.date;
+				case CriteriumType.showSoldOut:			return ValueType.boolean;
 				default: throw new NotSupportedException();
 			}
 		}
 
 		public string valueString(CriteriumType type, object value) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			checkValueCorrect(type, value);
 
-			Debug.Assert(Enum.GetValues(typeof(ValueType)).Length == 6);
+			Debug.Assert(Enum.GetValues(typeof(ValueType)).Length == 7);
 			switch(this.valueType(type)) {
 				case ValueType.amountRub: return value.ToString();
 				case ValueType.collection: {
@@ -95,12 +97,13 @@ namespace Criteria {
 				case ValueType.year:  return value.ToString() + "г.";
 				case ValueType.date:  return ((DateTime) value).ToString("d");
 				case ValueType.count: return value.ToString();
+				case ValueType.boolean: return (bool) value ? "Да" : "Нет";
 				default: throw new NotSupportedException();
 			}
 		}
 
 		public string name(CriteriumType type) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			switch(type) {
 				case CriteriumType.priceFrom:			return "Цена от, руб.";
 				case CriteriumType.priceTo:				return "Цена до, руб.";
@@ -121,6 +124,7 @@ namespace Criteria {
 				case CriteriumType.ownersCountTo:		return "Количество владельцев до";
 				case CriteriumType.aquisitionDateFrom:	return "Дата приобретения от";
 				case CriteriumType.aquisitionDateTo:	return "Дата приобретения до";
+				case CriteriumType.showSoldOut:	return "Показывать проданные";
 				default: throw new NotSupportedException();
 			}
 		}
@@ -136,7 +140,7 @@ namespace Criteria {
 		}
 
 		public Dictionary<int, object> values(CriteriumType type) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			switch(type) {
 				case CriteriumType.brand		: return brandValues;
 				case CriteriumType.trans		: return enumDictionary<Autos.Transmission>();
@@ -161,7 +165,7 @@ namespace Criteria {
 		}
 
 		public Dictionary<int, string> valuesNames(CriteriumType type) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			switch(type) {
 				case CriteriumType.brand		: {
 					var nd = new Dictionary<int, string>(brandValues.Count);
@@ -178,7 +182,7 @@ namespace Criteria {
 		}
 
 		public static int importance(CriteriumType type) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 			switch(type) {
 				case CriteriumType.priceFrom: return 100;
 				case CriteriumType.priceTo	: return 99;
@@ -199,6 +203,7 @@ namespace Criteria {
 				case CriteriumType.ownersCountTo:		return 30;
 				case CriteriumType.aquisitionDateFrom:	return 21;
 				case CriteriumType.aquisitionDateTo:	return 20;
+				case CriteriumType.showSoldOut:	return 110;
 				default: throw new NotSupportedException();
 			}
 		}
@@ -209,8 +214,8 @@ namespace Criteria {
 		}
 
 		public void checkValueCorrect(CriteriumType type, object value) {
-			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
-			Debug.Assert(Enum.GetValues(typeof(ValueType)).Length == 6);
+			Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
+			Debug.Assert(Enum.GetValues(typeof(ValueType)).Length == 7);
 
 			bool valueCorrect;
 			switch(this.valueType(type)) {
@@ -231,6 +236,9 @@ namespace Criteria {
 				} break;
 				case ValueType.count: {
 					valueCorrect = value is int && (int)value >= 0;
+				} break;
+				case ValueType.boolean: {
+					valueCorrect = value is bool;
 				} break;
 				default: valueCorrect = false; break;
 			}

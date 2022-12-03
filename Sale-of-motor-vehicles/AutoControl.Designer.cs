@@ -32,6 +32,7 @@ namespace Sale_of_motor_vehicles {
 			this.characteristicsLabel = new System.Windows.Forms.Label();
 			this.descrtiptionLabel = new System.Windows.Forms.Label();
 			this.showButton = new System.Windows.Forms.Button();
+			this.soldStatusLabel = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.tableLayoutPanel2.SuspendLayout();
@@ -76,6 +77,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2.Controls.Add(this.characteristicsLabel, 0, 2);
 			this.tableLayoutPanel2.Controls.Add(this.descrtiptionLabel, 0, 3);
 			this.tableLayoutPanel2.Controls.Add(this.showButton, 1, 0);
+			this.tableLayoutPanel2.Controls.Add(this.soldStatusLabel, 1, 2);
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(182, 10);
 			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
@@ -85,6 +87,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel2.Size = new System.Drawing.Size(391, 132);
 			this.tableLayoutPanel2.TabIndex = 1;
 			// 
@@ -111,7 +114,6 @@ namespace Sale_of_motor_vehicles {
 			// characteristicsLabel
 			// 
 			this.characteristicsLabel.AutoSize = true;
-			this.tableLayoutPanel2.SetColumnSpan(this.characteristicsLabel, 2);
 			this.characteristicsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.characteristicsLabel.Location = new System.Drawing.Point(3, 35);
 			this.characteristicsLabel.Name = "characteristicsLabel";
@@ -150,6 +152,16 @@ namespace Sale_of_motor_vehicles {
 			this.showButton.UseVisualStyleBackColor = false;
 			this.showButton.Click += new System.EventHandler(this.showButton_Click);
 			// 
+			// soldStatusLabel
+			// 
+			this.soldStatusLabel.AutoSize = true;
+			this.soldStatusLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.soldStatusLabel.Location = new System.Drawing.Point(303, 35);
+			this.soldStatusLabel.Name = "soldStatusLabel";
+			this.soldStatusLabel.Size = new System.Drawing.Size(82, 15);
+			this.soldStatusLabel.TabIndex = 5;
+			this.soldStatusLabel.Text = "characteristics";
+			// 
 			// AutoControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,5 +188,6 @@ namespace Sale_of_motor_vehicles {
 		private System.Windows.Forms.Label characteristicsLabel;
 		private System.Windows.Forms.Label descrtiptionLabel;
 		private System.Windows.Forms.Button showButton;
+		private System.Windows.Forms.Label soldStatusLabel;
 	}
 }

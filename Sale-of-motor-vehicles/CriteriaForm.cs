@@ -75,7 +75,7 @@ namespace Sale_of_motor_vehicles {
 		private void updateValue() {
 			var type = (Criteria.CriteriumType) System.Enum.GetValues(typeof(Criteria.CriteriumType)).GetValue(criteriaTypeCombobox.SelectedIndex);
 			
-			System.Diagnostics.Debug.Assert(System.Enum.GetValues(typeof(ValueType)).Length == 6);
+			System.Diagnostics.Debug.Assert(System.Enum.GetValues(typeof(ValueType)).Length == 7);
 			Control control;
 			switch(context.criteria.valueType(type)) {
 				case ValueType.amountRub: {
@@ -160,6 +160,22 @@ namespace Sale_of_motor_vehicles {
 					if(value != null) c.Value = (int) value;
 					c.ValueChanged += (a, b) => { value = (int) c.Value; };
 					value = (int) c.Value;
+
+					control = c;
+				} break;
+				case ValueType.boolean: {
+					var c = new ComboBox();
+					c.DropDownStyle = ComboBoxStyle.DropDownList;
+					c.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 204);
+					c.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+					//https://stackoverflow.com/a/36053487/18704284
+					c.BindingContext = this.BindingContext;
+					c.DataSource = new BindingSource{ DataSource = new List<string>(2){"Нет", "Да"} };
+
+					if(value != null) c.SelectedIndex = (bool) value ? 1 : 0;
+					else c.SelectedIndex = 0;
+					c.SelectedIndexChanged += (a, b) => { value = c.SelectedIndex == 1; };
+					value = c.SelectedIndex == 1;
 
 					control = c;
 				} break;

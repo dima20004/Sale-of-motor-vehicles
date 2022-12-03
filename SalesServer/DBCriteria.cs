@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SalesServer {
 	static class DBCriteria {
 		private static string dbCheck(CriteriumType crit, string tableName, string paramName) {
-			System.Diagnostics.Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 19);
+			System.Diagnostics.Debug.Assert(Enum.GetValues(typeof(CriteriumType)).Length == 20);
 
 			var tn = tableName;
 			var pn = paramName;
@@ -33,6 +33,7 @@ namespace SalesServer {
 				case CriteriumType.ownersCountTo:		return tn + ".[OwnersCount]<=" + pn;
 				case CriteriumType.aquisitionDateFrom:	return tn + ".[AquisitionDate]>=" + pn;
 				case CriteriumType.aquisitionDateTo:	return tn + ".[AquisitionDate]" + pn;
+				case CriteriumType.showSoldOut:			return tn + ".[SoldOutDate] is null or " + pn + " != 0";
 				default: throw new NotSupportedException();
 			}
 		}

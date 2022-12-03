@@ -19,6 +19,10 @@ namespace Sale_of_motor_vehicles {
 			this.critList = new CriteriaList(context.criteria);
 
 			InitializeComponent();
+
+			critList.Add(context.criteria.create(Criteria.CriteriumType.showSoldOut, false));
+				
+			updateCritListDisplay();
 		}
 
 		void updateLoginDisplay() {

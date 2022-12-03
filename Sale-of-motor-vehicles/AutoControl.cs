@@ -28,6 +28,8 @@ namespace Sale_of_motor_vehicles {
 				+ Autos.Names.typeName(auto.type) + ", " + Autos.Names.EngineTypeName(auto.engineType);
 
 			descrtiptionLabel.Text = auto.description;
+
+			soldStatusLabel.Text = auto.soldOutDate != null ? "Продано" : "Продаётся";
 		}
 
 		private Image decodeImage(byte[] img) {

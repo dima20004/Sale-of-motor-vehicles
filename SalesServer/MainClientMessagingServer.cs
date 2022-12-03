@@ -73,7 +73,7 @@ namespace SalesServer {
 					[Owner], [Image], [SoldOutDate],
 					[SoldOutPrice]
 				from [Auto].[Automobiles]
-				where [SoldOutDate] is null and " + chs.str, 
+				where " + chs.str, 
 				c
 			)) {
 			command.CommandType = System.Data.CommandType.Text;

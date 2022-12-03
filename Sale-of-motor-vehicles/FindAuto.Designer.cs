@@ -30,6 +30,7 @@ namespace Sale_of_motor_vehicles {
 			this.loginButton = new System.Windows.Forms.Button();
 			this.autosLabel = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.label1 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
@@ -40,7 +41,6 @@ namespace Sale_of_motor_vehicles {
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.autosTable = new System.Windows.Forms.TableLayoutPanel();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.label1 = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
@@ -141,12 +141,27 @@ namespace Sale_of_motor_vehicles {
 			this.panel1.Size = new System.Drawing.Size(1032, 1);
 			this.panel1.TabIndex = 2;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.Location = new System.Drawing.Point(20, 10);
+			this.label1.Margin = new System.Windows.Forms.Padding(0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(208, 29);
+			this.label1.TabIndex = 3;
+			this.label1.Text = "Бизнес-анализ";
+			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.label1.UseMnemonic = false;
+			this.label1.Click += new System.EventHandler(this.label1_Click);
+			// 
 			// tableLayoutPanel3
 			// 
 			this.tableLayoutPanel3.ColumnCount = 3;
-			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
 			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
 			this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel4, 0, 0);
 			this.tableLayoutPanel3.Controls.Add(this.panel2, 1, 0);
 			this.tableLayoutPanel3.Controls.Add(this.autosTable, 2, 0);
@@ -171,7 +186,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel4.RowCount = 2;
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel4.Size = new System.Drawing.Size(206, 507);
+			this.tableLayoutPanel4.Size = new System.Drawing.Size(257, 507);
 			this.tableLayoutPanel4.TabIndex = 0;
 			// 
 			// tableLayoutPanel6
@@ -187,7 +202,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel6.RowCount = 1;
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel6.Size = new System.Drawing.Size(206, 507);
+			this.tableLayoutPanel6.Size = new System.Drawing.Size(257, 507);
 			this.tableLayoutPanel6.TabIndex = 2;
 			// 
 			// tableLayoutPanel5
@@ -205,7 +220,7 @@ namespace Sale_of_motor_vehicles {
 			this.tableLayoutPanel5.Name = "tableLayoutPanel5";
 			this.tableLayoutPanel5.RowCount = 1;
 			this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel5.Size = new System.Drawing.Size(206, 33);
+			this.tableLayoutPanel5.Size = new System.Drawing.Size(257, 33);
 			this.tableLayoutPanel5.TabIndex = 0;
 			// 
 			// addCriteriaButton
@@ -215,7 +230,7 @@ namespace Sale_of_motor_vehicles {
 			this.addCriteriaButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.addCriteriaButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
 			this.addCriteriaButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.addCriteriaButton.Location = new System.Drawing.Point(9, 3);
+			this.addCriteriaButton.Location = new System.Drawing.Point(60, 3);
 			this.addCriteriaButton.Name = "addCriteriaButton";
 			this.addCriteriaButton.Size = new System.Drawing.Size(135, 27);
 			this.addCriteriaButton.TabIndex = 3;
@@ -234,7 +249,7 @@ namespace Sale_of_motor_vehicles {
 			this.findButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.findButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.findButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.findButton.Location = new System.Drawing.Point(150, 3);
+			this.findButton.Location = new System.Drawing.Point(201, 3);
 			this.findButton.Name = "findButton";
 			this.findButton.Size = new System.Drawing.Size(53, 27);
 			this.findButton.TabIndex = 4;
@@ -254,14 +269,14 @@ namespace Sale_of_motor_vehicles {
 			this.criteriaTable.Name = "criteriaTable";
 			this.criteriaTable.RowCount = 1;
 			this.criteriaTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.criteriaTable.Size = new System.Drawing.Size(206, 474);
+			this.criteriaTable.Size = new System.Drawing.Size(257, 474);
 			this.criteriaTable.TabIndex = 1;
 			// 
 			// panel2
 			// 
 			this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel2.Location = new System.Drawing.Point(206, 0);
+			this.panel2.Location = new System.Drawing.Point(257, 0);
 			this.panel2.Margin = new System.Windows.Forms.Padding(0);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(1, 507);
@@ -276,29 +291,14 @@ namespace Sale_of_motor_vehicles {
 			this.autosTable.ColumnCount = 1;
 			this.autosTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.autosTable.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.autosTable.Location = new System.Drawing.Point(207, 0);
+			this.autosTable.Location = new System.Drawing.Point(258, 0);
 			this.autosTable.Margin = new System.Windows.Forms.Padding(0);
 			this.autosTable.Name = "autosTable";
 			this.autosTable.Padding = new System.Windows.Forms.Padding(10, 10, 10, 0);
 			this.autosTable.RowCount = 1;
 			this.autosTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.autosTable.Size = new System.Drawing.Size(825, 507);
+			this.autosTable.Size = new System.Drawing.Size(774, 507);
 			this.autosTable.TabIndex = 2;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(20, 10);
-			this.label1.Margin = new System.Windows.Forms.Padding(0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(208, 29);
-			this.label1.TabIndex = 3;
-			this.label1.Text = "Бизнес-анализ";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.label1.UseMnemonic = false;
-			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// FindAuto
 			// 
