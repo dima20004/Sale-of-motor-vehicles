@@ -11,11 +11,13 @@ namespace Sale_of_motor_vehicles {
 		/// </summary>
 		[STAThread]
 		static void Main() {
-			var context = new Context();
+			Context context;
+			Exception e;
+			try{ context = new Context(); e = null; } catch(Exception ex) { context = null; e = ex; }
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FindAuto(context));
+			Application.Run(new FindAuto(context, e));
 		}
 	}
 }

@@ -14,18 +14,25 @@ namespace Sale_of_motor_vehicles {
 		private Context context;
 
 		private CriteriaList critList;
-		public FindAuto(Context context) {
+		public FindAuto(Context context, Exception e) {
 			this.context = context;
-			this.critList = new CriteriaList(context.criteria);
 
 			InitializeComponent();
 
-			critList.Add(context.criteria.create(Criteria.CriteriumType.showSoldOut, false));
-				
-			updateCritListDisplay();
+			if(context == null) {
+				statusLabel.Text = e.Message;
+				statusTooltip.SetToolTip(statusLabel, e.ToString());
+			}
+			else {
+				critList = new CriteriaList(context.criteria);
+
+				critList.Add(context.criteria.create(Criteria.CriteriumType.showSoldOut, false));
+				updateCritListDisplay();
+			}
 		}
 
 		void updateLoginDisplay() {
+			if(context == null) return;
 			if(context.customer.LoggedIn) {
 				loginButton.Text = "Выйти";
 			}
@@ -35,6 +42,8 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void acountLabel_Click(object sender, EventArgs e) {
+			if(context == null) return;
+
 			if(context.customer.LoggedIn) new AutoForm(context, null, false).ShowDialog();
 			else {
 				var result = new LoginForm(context).ShowDialog();
@@ -43,6 +52,8 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void loginButton_Click(object sender, EventArgs e) {
+			if(context == null) return;
+
 			if(context.customer.LoggedIn) {
 				context.customer.logOut();
 				updateLoginDisplay();
@@ -56,6 +67,8 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void addCriteriaButton_Click(object sender, EventArgs e) {
+			if(context == null) return;
+
 			var form = new CriteriaForm(context, null);
 			if(form.ShowDialog() == DialogResult.OK) {
 				critList.Add(form.criterium);
@@ -64,6 +77,8 @@ namespace Sale_of_motor_vehicles {
 			}
 		}
 		private void updateCritListDisplay() {
+			if(context == null) return;
+
 			var cl = critList.List;
 
 			criteriaTable.SuspendLayout();
@@ -126,6 +141,8 @@ namespace Sale_of_motor_vehicles {
 		}
 
 		private void findButton_Click(object sender, EventArgs e) {
+			if(context == null) return;
+
 			var result = context.messaging.attempt((it) => it.findAdverts(critList.List));
 
 			autosTable.SuspendLayout();
@@ -173,6 +190,10 @@ namespace Sale_of_motor_vehicles {
 
 		private void label1_Click(object sender, EventArgs e) {
 			new AnalysisForm(context).ShowDialog();
+		}
+
+		private void label2_Click(object sender, EventArgs e) {
+			new ContactInfo().ShowDialog();
 		}
 	}
 }
